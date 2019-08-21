@@ -16,5 +16,10 @@ namespace CGWar
         {
             InitializeComponent();
         }
+
+        private void GameForm_Load(object sender, EventArgs e)
+        {
+            Game game = new Game();
+        }
     }
 }
