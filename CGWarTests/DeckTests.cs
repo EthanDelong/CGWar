@@ -32,5 +32,31 @@ namespace CGWar.Tests
             deck.Shuffle(1, 5);
             Assert.IsFalse(deck.Cards.SequenceEqual(preShuffle));
         }
+
+        /// <summary>
+        /// Make sure one card is dealt at a time.
+        /// </summary>
+        [TestMethod()]
+        public void DealOneTest()
+        {
+            var deck = new Deck();
+            var player = new Player();
+            deck.DealOne(player);
+            Assert.IsTrue(player.CardsLeft == 1);
+        }
+
+        /// <summary>
+        /// Make sure cards are distributed equally to all players.
+        /// </summary>
+        [TestMethod()]
+        public void DealTest()
+        {
+            var deck = new Deck();
+            var p1 = new Player();
+            var p2 = new Player();
+            deck.Deal(p1, p2);
+            Assert.IsTrue(p1.CardsLeft == p2.CardsLeft);
+            Assert.IsTrue(deck.Cards.Count == 0);
+        }
     }
 }

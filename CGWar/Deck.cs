@@ -102,5 +102,31 @@ namespace CGWar
             int cutIndex = rand.Next(0, Cards.Count);
             Cards = Cards.Skip(cutIndex).Concat(Cards.Take(cutIndex)).ToList();
         }
+
+        /// <summary>
+        /// Deals the top card off the deck to the player specified.
+        /// </summary>
+        /// <param name="player">The receiving player.</param>
+        public void DealOne(Player player)
+        {
+            player.GiveCard(Cards.First());
+            Cards = Cards.Skip(1).ToList(); ;
+        }
+
+        /// <summary>
+        /// Distributes all the cards to each player.
+        /// </summary>
+        /// <param name="p1">The first player to deal to.</param>
+        /// <param name="p2">The second player to deal to.</param>
+        public void Deal(params Player[] players)
+        {
+            int currentPlayer = 0;
+            while(Cards.Count > 0)
+            {
+                DealOne(players[currentPlayer++]);
+                if (currentPlayer >= players.Length)
+                    currentPlayer = 0;
+            }
+        }
     }
 }
