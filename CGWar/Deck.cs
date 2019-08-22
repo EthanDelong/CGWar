@@ -21,10 +21,10 @@ namespace CGWar
         /// <summary>
         /// Initialize the deck by getting a new set of cards and shuffling them.
         /// </summary>
-        public Deck()
+        public Deck(int shuffleCount = 8, int randomSeed = 0)
         {
             Cards = CreateDeck();
-            Shuffle();
+            Shuffle(shuffleCount, randomSeed);
         }
         
         /// <summary>
