@@ -24,16 +24,7 @@ namespace CGWar
         public Deck()
         {
             Cards = CreateDeck();
-            Debug.WriteLine("New Deck:");
-            foreach (var card in Cards)
-                Debug.WriteLine($"  {card}");
-            Debug.WriteLine("");
-
             Shuffle();
-            Debug.WriteLine("New Deck:");
-            foreach (var card in Cards)
-                Debug.WriteLine($"  {card}");
-            Debug.WriteLine("");
         }
         
         /// <summary>
@@ -110,7 +101,7 @@ namespace CGWar
         public void DealOne(Player player)
         {
             player.GiveCard(Cards.First());
-            Cards = Cards.Skip(1).ToList(); ;
+            Cards = Cards.Skip(1).ToList();
         }
 
         /// <summary>
