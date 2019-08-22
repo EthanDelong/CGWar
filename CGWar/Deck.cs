@@ -58,13 +58,17 @@ namespace CGWar
         /// Shuffles the deck
         /// </summary>
         /// <param name="shuffleCount">The number of times to shuffle</param>
-        public void Shuffle(int shuffleCount = 8)
+        /// <param name="randomSeed">Used for unit testing to "de-randomize" the shuffle by predefining the starting random seed</param>
+        public void Shuffle(int shuffleCount = 8, int randomSeed = 0)
         {
             // Don't bother if we're not going to shuffle.
             if (shuffleCount <= 0)
                 return;
 
             Random rand = new Random();
+            if (randomSeed > 0)
+                rand = new Random(randomSeed);
+
             for (int i = 0; i < shuffleCount; i++)
             {
                 // While it would be easier to just loop through and shift cards with others, I thought it

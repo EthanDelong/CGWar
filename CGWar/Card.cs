@@ -48,6 +48,24 @@ namespace CGWar
             Suit = suit;
         }
 
+        public override bool Equals(object obj)
+        {
+            return (obj is Card) && obj.GetHashCode() == GetHashCode();
+        }
+
+        /// <summary>
+        /// Custom hash code for comparison between cards.
+        /// </summary>
+        /// <returns>The custom int hash code of this card.</returns>
+        public override int GetHashCode()
+        {
+            return (int)Rank + (100 * ((int)Suit + 1)) + 1;
+        }
+
+        /// <summary>
+        /// Show the card in text format {Rank} of {Suit}
+        /// </summary>
+        /// <returns>The string description of the card.</returns>
         public override string ToString()
         {
             return $"{Rank} of {Suit}".TrimStart('D');
