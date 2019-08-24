@@ -14,15 +14,15 @@ namespace WarNET.Game
     public class GameEngine
     {
         /// <summary>
-        /// This is the main UI that we control through the game engine and its frames.
-        /// </summary>
-        private GameForm gameForm;
-
-        /// <summary>
         /// The deck is created when the game engine is created. For new games, we 
         /// will re-shuffle the same deck instead of creating a new one each time.
         /// </summary>
-        private readonly Deck deck;
+        public readonly Deck Deck;
+
+        /// <summary>
+        /// This is the main UI that we control through the game engine and its frames.
+        /// </summary>
+        private GameForm gameForm;
 
         /// <summary>
         /// Collection of available frames within the game. These are populated from
@@ -30,7 +30,7 @@ namespace WarNET.Game
         /// us to easily update each frame in the Visual Studio designer while making 
         /// them look clean for the user.
         /// </summary>
-        private Dictionary<string, IFrame> frames;
+        private Dictionary<string, FrameBase> frames;
 
         /// <summary>
         /// Create a new game.
@@ -39,7 +39,7 @@ namespace WarNET.Game
         public GameEngine(GameForm gameForm)
         {
             this.gameForm = gameForm;
-            deck = new Deck();
+            Deck = new Deck();
         }
 
         /// <summary>
@@ -50,20 +50,25 @@ namespace WarNET.Game
             // We use reflection to create frames from the panels inside of the tabs we created.
             // As long as we follow the standard of creating a panel with {FrameName}Frame, and 
             // make sure we have a matching IFrame extended class, it should load to our collection.
-            frames = new Dictionary<string, IFrame>();
+            frames = new Dictionary<string, FrameBase>();
             foreach(Control control in gameForm.GetChildren<Panel>())
             {
                 if(control.Name.EndsWith("Frame"))
                 {
-                    var test = Assembly.GetExecutingAssembly().CreateInstance($"{typeof(IFrame).Namespace}.{control.Name}");
-                    if(test != null && test is IFrame)
+                    var test = Assembly.GetExecutingAssembly().CreateInstance($"{typeof(FrameBase).Namespace}.{control.Name}", false, BindingFlags.CreateInstance, null, new object[] { this, control }, null, null);
+                    if(test != null && test is FrameBase)
                     {
-                        IFrame frame = (IFrame)test;
-                        frame.Game = this;
-                        frame.Panel = (Panel) control;
-                        // for each child control, handle any clicking event through our custom handler, which redirects it to the parent frame
-                        control.GetChildren().ToList().ForEach(c => c.Click += new EventHandler(HandleControl_Click));
+                        FrameBase frame = (FrameBase)test;
                         frames.Add(control.Name, frame);
+
+                        // Set up event handling for all controls within this frame.
+                        control.GetChildren().ToList().ForEach(child =>
+                        {
+                            child.Click += new EventHandler(HandleControl_Click);
+                            if (child is TrackBar)
+                                ((TrackBar)child).ValueChanged += new EventHandler(HandleControl_ValueChanged);
+                            frame.HandleControl_Load(child);
+                        });
                     }
                 }
             }
@@ -98,7 +103,37 @@ namespace WarNET.Game
         public void HandleControl_Click(object sender, EventArgs e)
         {
             var control = (Control)sender;
-            frames[control.Parent.Name].HandleControl(control.Name);
+            if (TryGetFrame(control, out FrameBase frame))
+            {
+                frame.HandleControl_Click(control);
+            }
+        }
+
+        /// <summary>
+        /// Handle control clicks through the parent frame.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void HandleControl_ValueChanged(object sender, EventArgs e)
+        {
+            var trackBar = (TrackBar)sender;
+            if (TryGetFrame(trackBar, out FrameBase frame))
+            {
+                frame.HandleControl_ValueChanged(trackBar);
+            }
+        }
+
+        /// <summary>
+        /// Gets the base frame from the specified control.
+        /// </summary>
+        /// <param name="control">The control to get the frame for.</param>
+        /// <returns>The parent frame that this control belongs to.</returns>
+        private bool TryGetFrame(Control control, out FrameBase frame)
+        {
+            var parent = control.Parent;
+            while (parent != null && !parent.Name.EndsWith("Frame"))
+                parent = parent.Parent;
+            return frames.TryGetValue(parent.Name, out frame);
         }
     }
 }

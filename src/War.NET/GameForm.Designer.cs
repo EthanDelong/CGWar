@@ -41,17 +41,35 @@
             this.RulesTextDescription = new System.Windows.Forms.RichTextBox();
             this.RulesList = new System.Windows.Forms.ComboBox();
             this.RulesListLabel = new System.Windows.Forms.Label();
+            this.framePageNewGame = new System.Windows.Forms.TabPage();
+            this.NewGameFrame = new System.Windows.Forms.Panel();
+            this.NewGameBoxCut = new System.Windows.Forms.GroupBox();
+            this.NewGameDeckCutSlider = new System.Windows.Forms.TrackBar();
+            this.NewGameBoxShuffle = new System.Windows.Forms.GroupBox();
+            this.NewGameDeckShuffleSlider = new System.Windows.Forms.TrackBar();
+            this.NewGameLabelOpponent = new System.Windows.Forms.Label();
+            this.NewGameButtonStart = new System.Windows.Forms.Button();
+            this.NewGameLabelName = new System.Windows.Forms.Label();
+            this.NewGameTextName = new System.Windows.Forms.TextBox();
+            this.NewGameTextOpponent = new System.Windows.Forms.TextBox();
             this.frameCollection.SuspendLayout();
             this.framePageHome.SuspendLayout();
             this.HomeFrame.SuspendLayout();
             this.framePageRules.SuspendLayout();
             this.RulesFrame.SuspendLayout();
+            this.framePageNewGame.SuspendLayout();
+            this.NewGameFrame.SuspendLayout();
+            this.NewGameBoxCut.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NewGameDeckCutSlider)).BeginInit();
+            this.NewGameBoxShuffle.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NewGameDeckShuffleSlider)).BeginInit();
             this.SuspendLayout();
             // 
             // frameCollection
             // 
             this.frameCollection.Controls.Add(this.framePageHome);
             this.frameCollection.Controls.Add(this.framePageRules);
+            this.frameCollection.Controls.Add(this.framePageNewGame);
             this.frameCollection.Dock = System.Windows.Forms.DockStyle.Fill;
             this.frameCollection.Location = new System.Drawing.Point(0, 0);
             this.frameCollection.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -191,6 +209,115 @@
             this.RulesListLabel.TabIndex = 1;
             this.RulesListLabel.Text = "Select Rules:";
             // 
+            // framePageNewGame
+            // 
+            this.framePageNewGame.Controls.Add(this.NewGameFrame);
+            this.framePageNewGame.Location = new System.Drawing.Point(4, 29);
+            this.framePageNewGame.Name = "framePageNewGame";
+            this.framePageNewGame.Size = new System.Drawing.Size(1056, 602);
+            this.framePageNewGame.TabIndex = 2;
+            this.framePageNewGame.Text = "New Game";
+            this.framePageNewGame.UseVisualStyleBackColor = true;
+            // 
+            // NewGameFrame
+            // 
+            this.NewGameFrame.Controls.Add(this.NewGameBoxCut);
+            this.NewGameFrame.Controls.Add(this.NewGameBoxShuffle);
+            this.NewGameFrame.Controls.Add(this.NewGameLabelOpponent);
+            this.NewGameFrame.Controls.Add(this.NewGameButtonStart);
+            this.NewGameFrame.Controls.Add(this.NewGameLabelName);
+            this.NewGameFrame.Controls.Add(this.NewGameTextName);
+            this.NewGameFrame.Controls.Add(this.NewGameTextOpponent);
+            this.NewGameFrame.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.NewGameFrame.Location = new System.Drawing.Point(0, 0);
+            this.NewGameFrame.Name = "NewGameFrame";
+            this.NewGameFrame.Size = new System.Drawing.Size(1056, 602);
+            this.NewGameFrame.TabIndex = 0;
+            // 
+            // NewGameBoxCut
+            // 
+            this.NewGameBoxCut.Controls.Add(this.NewGameDeckCutSlider);
+            this.NewGameBoxCut.Location = new System.Drawing.Point(287, 324);
+            this.NewGameBoxCut.Name = "NewGameBoxCut";
+            this.NewGameBoxCut.Size = new System.Drawing.Size(467, 66);
+            this.NewGameBoxCut.TabIndex = 11;
+            this.NewGameBoxCut.TabStop = false;
+            this.NewGameBoxCut.Text = "Cut Deck At: 0";
+            // 
+            // NewGameDeckCutSlider
+            // 
+            this.NewGameDeckCutSlider.AutoSize = false;
+            this.NewGameDeckCutSlider.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.NewGameDeckCutSlider.Location = new System.Drawing.Point(3, 22);
+            this.NewGameDeckCutSlider.Name = "NewGameDeckCutSlider";
+            this.NewGameDeckCutSlider.Size = new System.Drawing.Size(461, 41);
+            this.NewGameDeckCutSlider.TabIndex = 3;
+            this.NewGameDeckCutSlider.TickStyle = System.Windows.Forms.TickStyle.None;
+            // 
+            // NewGameBoxShuffle
+            // 
+            this.NewGameBoxShuffle.Controls.Add(this.NewGameDeckShuffleSlider);
+            this.NewGameBoxShuffle.Location = new System.Drawing.Point(287, 220);
+            this.NewGameBoxShuffle.Name = "NewGameBoxShuffle";
+            this.NewGameBoxShuffle.Size = new System.Drawing.Size(467, 66);
+            this.NewGameBoxShuffle.TabIndex = 10;
+            this.NewGameBoxShuffle.TabStop = false;
+            this.NewGameBoxShuffle.Text = "Shuffle Count: 0";
+            // 
+            // NewGameDeckShuffleSlider
+            // 
+            this.NewGameDeckShuffleSlider.AutoSize = false;
+            this.NewGameDeckShuffleSlider.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.NewGameDeckShuffleSlider.Location = new System.Drawing.Point(3, 22);
+            this.NewGameDeckShuffleSlider.Name = "NewGameDeckShuffleSlider";
+            this.NewGameDeckShuffleSlider.Size = new System.Drawing.Size(461, 41);
+            this.NewGameDeckShuffleSlider.TabIndex = 2;
+            this.NewGameDeckShuffleSlider.TickStyle = System.Windows.Forms.TickStyle.None;
+            // 
+            // NewGameLabelOpponent
+            // 
+            this.NewGameLabelOpponent.AutoSize = true;
+            this.NewGameLabelOpponent.Location = new System.Drawing.Point(283, 168);
+            this.NewGameLabelOpponent.Name = "NewGameLabelOpponent";
+            this.NewGameLabelOpponent.Size = new System.Drawing.Size(84, 20);
+            this.NewGameLabelOpponent.TabIndex = 9;
+            this.NewGameLabelOpponent.Text = "Opponent:";
+            // 
+            // NewGameButtonStart
+            // 
+            this.NewGameButtonStart.Location = new System.Drawing.Point(445, 440);
+            this.NewGameButtonStart.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.NewGameButtonStart.Name = "NewGameButtonStart";
+            this.NewGameButtonStart.Size = new System.Drawing.Size(162, 50);
+            this.NewGameButtonStart.TabIndex = 8;
+            this.NewGameButtonStart.Text = "Start Game";
+            this.NewGameButtonStart.UseVisualStyleBackColor = true;
+            // 
+            // NewGameLabelName
+            // 
+            this.NewGameLabelName.AutoSize = true;
+            this.NewGameLabelName.Location = new System.Drawing.Point(312, 115);
+            this.NewGameLabelName.Name = "NewGameLabelName";
+            this.NewGameLabelName.Size = new System.Drawing.Size(55, 20);
+            this.NewGameLabelName.TabIndex = 7;
+            this.NewGameLabelName.Text = "Name:";
+            // 
+            // NewGameTextName
+            // 
+            this.NewGameTextName.Location = new System.Drawing.Point(373, 112);
+            this.NewGameTextName.Name = "NewGameTextName";
+            this.NewGameTextName.Size = new System.Drawing.Size(381, 26);
+            this.NewGameTextName.TabIndex = 5;
+            this.NewGameTextName.Text = "Player 1";
+            // 
+            // NewGameTextOpponent
+            // 
+            this.NewGameTextOpponent.Location = new System.Drawing.Point(373, 165);
+            this.NewGameTextOpponent.Name = "NewGameTextOpponent";
+            this.NewGameTextOpponent.Size = new System.Drawing.Size(381, 26);
+            this.NewGameTextOpponent.TabIndex = 6;
+            this.NewGameTextOpponent.Text = "Robot";
+            // 
             // GameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -212,6 +339,13 @@
             this.framePageRules.ResumeLayout(false);
             this.RulesFrame.ResumeLayout(false);
             this.RulesFrame.PerformLayout();
+            this.framePageNewGame.ResumeLayout(false);
+            this.NewGameFrame.ResumeLayout(false);
+            this.NewGameFrame.PerformLayout();
+            this.NewGameBoxCut.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.NewGameDeckCutSlider)).EndInit();
+            this.NewGameBoxShuffle.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.NewGameDeckShuffleSlider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -231,6 +365,17 @@
         private System.Windows.Forms.Button HomeButtonContinue;
         private System.Windows.Forms.Button HomeButtonNewGame;
         private System.Windows.Forms.Button HomeButtonSettings;
+        private System.Windows.Forms.TabPage framePageNewGame;
+        private System.Windows.Forms.Panel NewGameFrame;
+        private System.Windows.Forms.TextBox NewGameTextName;
+        private System.Windows.Forms.TextBox NewGameTextOpponent;
+        private System.Windows.Forms.TrackBar NewGameDeckCutSlider;
+        private System.Windows.Forms.TrackBar NewGameDeckShuffleSlider;
+        private System.Windows.Forms.GroupBox NewGameBoxCut;
+        private System.Windows.Forms.GroupBox NewGameBoxShuffle;
+        private System.Windows.Forms.Label NewGameLabelOpponent;
+        private System.Windows.Forms.Button NewGameButtonStart;
+        private System.Windows.Forms.Label NewGameLabelName;
     }
 }
 

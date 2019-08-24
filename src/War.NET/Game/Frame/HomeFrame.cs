@@ -4,22 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WarNET;
 
 namespace WarNET.Game.Frame
 {
-    public class HomeFrame : IFrame
+    public class HomeFrame : FrameBase
     {
-        public GameEngine Game { get; set; }
+        public HomeFrame(GameEngine game, Panel panel) : base(game, panel) { }
 
-        public Panel Panel { get; set; }
-
-        public void HandleControl(string controlName)
+        public override void HandleControl_Click(Control control)
         {
-            switch (controlName)
+            switch (control.Name)
             {
                 case "HomeButtonSettings":
                     Game.SetFrame("Rules");
+                    break;
+
+                case "HomeButtonNewGame":
+                    Game.SetFrame("NewGame");
                     break;
             }
         }
