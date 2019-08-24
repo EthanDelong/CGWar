@@ -1,4 +1,4 @@
-# CGWar
+# War.NET
 
 .NET Forms implementation of the popular card game "War"
 
