@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CGWar.Properties
+namespace WarNET.Properties
 {
 
 

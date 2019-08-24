@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CGWar
+namespace WarNET.Game
 {
     /// <summary>
     /// A player has a hand of cards, given to them by the game (distributed from the deck).

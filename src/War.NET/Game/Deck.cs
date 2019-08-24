@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CGWar
+namespace WarNET.Game
 {
     /// <summary>
     /// A deck initially consists of every combination of rank and suit of cards.

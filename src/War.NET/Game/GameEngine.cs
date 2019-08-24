@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CGWar
+namespace WarNET.Game
 {
-    class Game
+    class GameEngine
     {
         private Deck deck;
 
-        public Game()
+        public GameEngine()
         {
             deck = new Deck();
         }
