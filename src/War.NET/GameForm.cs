@@ -13,6 +13,9 @@ namespace WarNET
 {
     public partial class GameForm : Form
     {
+        /// <summary>
+        /// The currently loaded game engine.
+        /// </summary>
         private readonly GameEngine game;
 
         /// <summary>
@@ -36,7 +39,7 @@ namespace WarNET
         /// <param name="e"></param>
         private void GameForm_Load(object sender, EventArgs e)
         {
-            game.Start();
+            game.Init();
         }
     }
 }

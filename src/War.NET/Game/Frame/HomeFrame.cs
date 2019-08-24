@@ -11,16 +11,24 @@ namespace WarNET.Game.Frame
     {
         public HomeFrame(GameEngine game, Panel panel) : base(game, panel) { }
 
+        /// <summary>
+        /// Switch between Frames
+        /// </summary>
+        /// <param name="control"></param>
         public override void HandleControl_Click(Control control)
         {
             switch (control.Name)
             {
-                case "HomeButtonSettings":
-                    Game.SetFrame("Rules");
+                case "HomeButtonNewGame":
+                    Game.Start();
                     break;
 
-                case "HomeButtonNewGame":
-                    Game.SetFrame("NewGame");
+                case "HomeButtonContinue":
+                    Game.Start(true);
+                    break;
+
+                case "HomeButtonSettings":
+                    Game.SetFrame("Rules");
                     break;
             }
         }

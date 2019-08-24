@@ -45,7 +45,7 @@ namespace WarNET.Game
         /// <summary>
         /// Load up all of our frames and set the home page.
         /// </summary>
-        public void Start()
+        public void Init()
         {
             // We use reflection to create frames from the panels inside of the tabs we created.
             // As long as we follow the standard of creating a panel with {FrameName}Frame, and 
@@ -75,6 +75,22 @@ namespace WarNET.Game
 
             // Once we've loaded up all the frames, we can set the current frame to the home page.
             SetFrame("Home");
+        }
+
+        /// <summary>
+        /// Start a new game or continue from a recently played one.
+        /// </summary>
+        /// <param name="loadRecent">Whether or not to continue from a recently exited game.</param>
+        public void Start(bool loadRecent = false)
+        {
+            if(loadRecent)
+            {
+                // TODO: Save game state as it's being played and allow it to be read in here.
+            }
+            else
+            {
+                SetFrame("NewGame");
+            }
         }
 
         /// <summary>
