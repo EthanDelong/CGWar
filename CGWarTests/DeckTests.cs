@@ -29,7 +29,7 @@ namespace CGWar.Tests
         {
             var deck = new Deck();
             var preShuffle = deck.Cards.ToArray();
-            deck.Shuffle(1, 5);
+            deck.Shuffle(1, 0, 5);
             Assert.IsFalse(deck.Cards.SequenceEqual(preShuffle));
         }
 
@@ -57,6 +57,20 @@ namespace CGWar.Tests
             deck.Deal(p1, p2);
             Assert.IsTrue(p1.CardsLeft == p2.CardsLeft);
             Assert.IsTrue(deck.Cards.Count == 0);
+        }
+
+        /// <summary>
+        /// Check to make sure deck is split where designated.
+        /// </summary>
+        [TestMethod()]
+        public void CutDeckTest()
+        {
+            var deck = new Deck();
+            var preCut = deck.Cards.ToArray();
+            var cutIndex = preCut.Length / 2;
+            deck.CutDeck(cutIndex);
+            Assert.IsTrue(preCut.Take(cutIndex).SequenceEqual(deck.Cards.Skip(cutIndex)));
+            Assert.IsTrue(preCut.Skip(cutIndex).SequenceEqual(deck.Cards.Take(cutIndex)));
         }
     }
 }

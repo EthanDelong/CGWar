@@ -21,10 +21,10 @@ namespace CGWar
         /// <summary>
         /// Initialize the deck by getting a new set of cards and shuffling them.
         /// </summary>
-        public Deck(int shuffleCount = 8, int randomSeed = 0)
+        public Deck(int shuffleCount = 8, int? cutIndex = null, int randomSeed = 0)
         {
             Cards = CreateDeck();
-            Shuffle(shuffleCount, randomSeed);
+            Shuffle(shuffleCount, cutIndex, randomSeed);
         }
         
         /// <summary>
@@ -49,8 +49,9 @@ namespace CGWar
         /// Shuffles the deck
         /// </summary>
         /// <param name="shuffleCount">The number of times to shuffle</param>
+        /// <param name="cutIndex">The index to cut the cards at after shuffling.</param>
         /// <param name="randomSeed">Used for unit testing to "de-randomize" the shuffle by predefining the starting random seed</param>
-        public void Shuffle(int shuffleCount = 8, int randomSeed = 0)
+        public void Shuffle(int shuffleCount = 8, int? cutIndex = null, int randomSeed = 0)
         {
             // Don't bother if we're not going to shuffle.
             if (shuffleCount <= 0)
@@ -90,7 +91,15 @@ namespace CGWar
             }
 
             // Lastly, we can simulate a "cut" of the deck by swapping at a random index.
-            int cutIndex = rand.Next(0, Cards.Count);
+            CutDeck(cutIndex ?? rand.Next(0, Cards.Count));
+        }
+
+        /// <summary>
+        /// Cuts the deck at the specified index.
+        /// </summary>
+        /// <param name="cutIndex">The position to cut the cards.</param>
+        public void CutDeck(int cutIndex)
+        {
             Cards = Cards.Skip(cutIndex).Concat(Cards.Take(cutIndex)).ToList();
         }
 
