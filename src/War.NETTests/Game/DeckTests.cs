@@ -1,13 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WarNET;
+using WarNET.Game;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WarNET.Game;
 
-namespace WarNET.Tests
+namespace WarNET.Game.Tests
 {
     [TestClass()]
     public class DeckTests
