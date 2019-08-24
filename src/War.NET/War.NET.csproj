@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\ControlExtensions.cs" />
     <Compile Include="GameForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,6 +55,9 @@
     </Compile>
     <Compile Include="Game\Card.cs" />
     <Compile Include="Game\Deck.cs" />
+    <Compile Include="Game\Frame\HomeFrame.cs" />
+    <Compile Include="Game\Frame\IFrame.cs" />
+    <Compile Include="Game\Frame\RulesFrame.cs" />
     <Compile Include="Game\GameEngine.cs" />
     <Compile Include="Game\Player.cs" />
     <Compile Include="Program.cs" />
@@ -84,11 +88,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Images\Back.png" />
-    <EmbeddedResource Include="Images\Clubs.png" />
-    <EmbeddedResource Include="Images\Diamonds.png" />
-    <EmbeddedResource Include="Images\Hearts.png" />
-    <EmbeddedResource Include="Images\Spades.png" />
+    <EmbeddedResource Include="Game\Images\Back.png" />
+    <EmbeddedResource Include="Game\Images\Clubs.png" />
+    <EmbeddedResource Include="Game\Images\Diamonds.png" />
+    <EmbeddedResource Include="Game\Images\Hearts.png" />
+    <EmbeddedResource Include="Game\Images\Spades.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Game\Rules\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

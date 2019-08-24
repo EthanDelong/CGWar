@@ -13,6 +13,8 @@ namespace WarNET
 {
     public partial class GameForm : Form
     {
+        private readonly GameEngine game;
+
         /// <summary>
         /// Set up the game form.
         /// Instead of using the default layout, we manually set our controls.
@@ -24,8 +26,7 @@ namespace WarNET
         public GameForm()
         {
             InitializeComponent();
-            Controls.Clear();
-            Controls.Add(HomeFrame);
+            game = new GameEngine(this);
         }
 
         /// <summary>
@@ -35,28 +36,7 @@ namespace WarNET
         /// <param name="e"></param>
         private void GameForm_Load(object sender, EventArgs e)
         {
-            GameEngine game = new GameEngine();
-
-        }
-
-        private void RulesSelectButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void HomeButtonNewGame_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void HomeButtonContinue_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void HomeButtonSelectRules_Click(object sender, EventArgs e)
-        {
-
+            game.Start();
         }
     }
 }

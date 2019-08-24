@@ -46,6 +46,7 @@
       <HintPath>..\War.NET\packages\MSTest.TestFramework.1.3.2\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -58,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Game\CardTests.cs" />
     <Compile Include="Game\DeckTests.cs" />
+    <Compile Include="Game\GameEngineTests.cs" />
     <Compile Include="Game\PlayerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
