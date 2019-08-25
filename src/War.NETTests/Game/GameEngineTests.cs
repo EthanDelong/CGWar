@@ -20,7 +20,7 @@ namespace WarNET.Game.Tests
         {
             var form = new GameForm();
             var game = new GameEngine(form);
-            game.Start();
+            game.Init();
             Assert.IsTrue(form.Controls.Count == 1);
             Assert.IsTrue(form.Controls[0].Name == "HomeFrame");
         }

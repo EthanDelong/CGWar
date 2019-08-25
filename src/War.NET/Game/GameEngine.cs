@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 using System.Windows.Forms;
+
 using WarNET.Game.Frame;
 using WarNET.Extensions;
-using System.Reflection;
+using WarNET.Properties;
 
 namespace WarNET.Game
 {
@@ -33,13 +32,39 @@ namespace WarNET.Game
         private Dictionary<string, FrameBase> frames;
 
         /// <summary>
+        /// Gets or sets the round through the property settings.
+        /// </summary>
+        public int Round
+        {
+            get
+            {
+                return int.TryParse(Settings.Default.GameRound, out int round) ? round : 0;
+            }
+            set
+            {
+                Settings.Default.GameRound = value.ToString();
+                Settings.Default.Save();
+            }
+        }
+
+        /// <summary>
+        /// The current player.
+        /// </summary>
+        private Player player;
+
+        /// <summary>
+        /// The opponent.
+        /// </summary>
+        private Player opponent;
+
+        /// <summary>
         /// Create a new game.
         /// </summary>
         /// <param name="gameForm">Reference the main form for our game's ui.</param>
         public GameEngine(GameForm gameForm)
         {
             this.gameForm = gameForm;
-            Deck = new Deck();
+            Deck = new Deck(0);
         }
 
         /// <summary>
@@ -90,6 +115,9 @@ namespace WarNET.Game
             else
             {
                 SetFrame("NewGame");
+                Round = 0;
+                player = new Player();
+                opponent = new Player();
             }
         }
 
@@ -137,6 +165,36 @@ namespace WarNET.Game
             {
                 frame.HandleControl_ValueChanged(trackBar);
             }
+        }
+
+        /// <summary>
+        /// Attempts to load existing game settings.
+        /// </summary>
+        /// <returns>true if the game was able to load existing settings</returns>
+        public bool Load()
+        {
+            // TODO: Try and load the game settings. If cards deserialize, success.
+            return false;
+        }
+
+        /// <summary>
+        /// Saves the current game settings.
+        /// </summary>
+        public void Save()
+        {
+            // The below properties are managed automatically outside of here.
+
+            // Settings.Default.GamePlayerName
+            // Settings.Default.GameOpponentName
+            // Settings.Default.GameRound
+            
+            // TODO: Serialize cards in the game to a custom format
+            // Settings.Default.GameCards = "";
+
+            Settings.Default.GamePlayerHandSize = (player?.CardsLeft ?? 0).ToString();
+            Settings.Default.GameOpponentHandSize = (opponent?.CardsLeft ?? 0).ToString();
+
+            Settings.Default.Save();
         }
 
         /// <summary>
