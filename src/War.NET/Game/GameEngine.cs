@@ -167,6 +167,8 @@ namespace WarNET.Game
             // Clear the current form controls and add the panel for the specified frame.
             gameForm.Controls.Clear();
             gameForm.Controls.Add(frames[name].Panel);
+
+            frames[name].Frame_Opened();
         }
 
         /// <summary>

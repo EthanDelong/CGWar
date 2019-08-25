@@ -31,6 +31,11 @@ namespace WarNET.Game.Frame
         }
 
         /// <summary>
+        /// Triggered whenever this frame is displayed on the screen.
+        /// </summary>
+        public virtual void Frame_Opened() { }
+
+        /// <summary>
         /// Event to handle controls being loaded.
         /// </summary>
         /// <param name="control">The control that has loaded.</param>

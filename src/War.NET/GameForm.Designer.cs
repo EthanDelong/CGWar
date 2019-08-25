@@ -384,13 +384,12 @@
             // PlayFrameLabelRoundCount
             // 
             this.PlayFrameLabelRoundCount.AutoSize = true;
-            this.PlayFrameLabelRoundCount.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::WarNET.Properties.Settings.Default, "GameRound", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.PlayFrameLabelRoundCount.Location = new System.Drawing.Point(70, 12);
             this.PlayFrameLabelRoundCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.PlayFrameLabelRoundCount.Name = "PlayFrameLabelRoundCount";
             this.PlayFrameLabelRoundCount.Size = new System.Drawing.Size(18, 20);
             this.PlayFrameLabelRoundCount.TabIndex = 11;
-            this.PlayFrameLabelRoundCount.Text = global::WarNET.Properties.Settings.Default.GameRound;
+            this.PlayFrameLabelRoundCount.Text = "0";
             // 
             // PlayFrameLabelRound
             // 
@@ -415,7 +414,7 @@
             // PlayFrameOpponentCard
             // 
             this.PlayFrameOpponentCard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PlayFrameOpponentCard.Location = new System.Drawing.Point(460, 90);
+            this.PlayFrameOpponentCard.Location = new System.Drawing.Point(531, 144);
             this.PlayFrameOpponentCard.Name = "PlayFrameOpponentCard";
             this.PlayFrameOpponentCard.Size = new System.Drawing.Size(135, 188);
             this.PlayFrameOpponentCard.TabIndex = 3;
@@ -423,7 +422,7 @@
             // PlayFramePlayerCard
             // 
             this.PlayFramePlayerCard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PlayFramePlayerCard.Location = new System.Drawing.Point(460, 284);
+            this.PlayFramePlayerCard.Location = new System.Drawing.Point(384, 246);
             this.PlayFramePlayerCard.Name = "PlayFramePlayerCard";
             this.PlayFramePlayerCard.Size = new System.Drawing.Size(135, 188);
             this.PlayFramePlayerCard.TabIndex = 3;
@@ -431,49 +430,47 @@
             // PlayFrameLabelOpponentHandSize
             // 
             this.PlayFrameLabelOpponentHandSize.AutoSize = true;
-            this.PlayFrameLabelOpponentHandSize.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::WarNET.Properties.Settings.Default, "GameOpponentHandSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.PlayFrameLabelOpponentHandSize.Location = new System.Drawing.Point(991, 12);
+            this.PlayFrameLabelOpponentHandSize.Location = new System.Drawing.Point(977, 233);
             this.PlayFrameLabelOpponentHandSize.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.PlayFrameLabelOpponentHandSize.Name = "PlayFrameLabelOpponentHandSize";
             this.PlayFrameLabelOpponentHandSize.Size = new System.Drawing.Size(18, 20);
             this.PlayFrameLabelOpponentHandSize.TabIndex = 7;
-            this.PlayFrameLabelOpponentHandSize.Text = global::WarNET.Properties.Settings.Default.GameOpponentHandSize;
+            this.PlayFrameLabelOpponentHandSize.Text = "0";
             // 
             // PlayFrameLabelPlayerHandSize
             // 
             this.PlayFrameLabelPlayerHandSize.AutoSize = true;
-            this.PlayFrameLabelPlayerHandSize.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::WarNET.Properties.Settings.Default, "GamePlayerHandSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.PlayFrameLabelPlayerHandSize.Location = new System.Drawing.Point(128, 568);
+            this.PlayFrameLabelPlayerHandSize.Location = new System.Drawing.Point(119, 568);
             this.PlayFrameLabelPlayerHandSize.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.PlayFrameLabelPlayerHandSize.Name = "PlayFrameLabelPlayerHandSize";
             this.PlayFrameLabelPlayerHandSize.Size = new System.Drawing.Size(18, 20);
             this.PlayFrameLabelPlayerHandSize.TabIndex = 6;
-            this.PlayFrameLabelPlayerHandSize.Text = global::WarNET.Properties.Settings.Default.GamePlayerHandSize;
+            this.PlayFrameLabelPlayerHandSize.Text = "0";
             // 
             // PlayFrameLabelOpponentCards
             // 
             this.PlayFrameLabelOpponentCards.AutoSize = true;
-            this.PlayFrameLabelOpponentCards.Location = new System.Drawing.Point(908, 12);
+            this.PlayFrameLabelOpponentCards.Location = new System.Drawing.Point(926, 233);
             this.PlayFrameLabelOpponentCards.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.PlayFrameLabelOpponentCards.Name = "PlayFrameLabelOpponentCards";
-            this.PlayFrameLabelOpponentCards.Size = new System.Drawing.Size(87, 20);
+            this.PlayFrameLabelOpponentCards.Size = new System.Drawing.Size(55, 20);
             this.PlayFrameLabelOpponentCards.TabIndex = 5;
-            this.PlayFrameLabelOpponentCards.Text = "Cards Left:";
+            this.PlayFrameLabelOpponentCards.Text = "Cards:";
             // 
             // PlayFrameLabelPlayerCards
             // 
             this.PlayFrameLabelPlayerCards.AutoSize = true;
-            this.PlayFrameLabelPlayerCards.Location = new System.Drawing.Point(46, 568);
+            this.PlayFrameLabelPlayerCards.Location = new System.Drawing.Point(70, 568);
             this.PlayFrameLabelPlayerCards.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.PlayFrameLabelPlayerCards.Name = "PlayFrameLabelPlayerCards";
-            this.PlayFrameLabelPlayerCards.Size = new System.Drawing.Size(87, 20);
+            this.PlayFrameLabelPlayerCards.Size = new System.Drawing.Size(55, 20);
             this.PlayFrameLabelPlayerCards.TabIndex = 4;
-            this.PlayFrameLabelPlayerCards.Text = "Cards Left:";
+            this.PlayFrameLabelPlayerCards.Text = "Cards:";
             // 
             // PlayFrameOpponentDeck
             // 
             this.PlayFrameOpponentDeck.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PlayFrameOpponentDeck.Location = new System.Drawing.Point(896, 47);
+            this.PlayFrameOpponentDeck.Location = new System.Drawing.Point(896, 31);
             this.PlayFrameOpponentDeck.Name = "PlayFrameOpponentDeck";
             this.PlayFrameOpponentDeck.Size = new System.Drawing.Size(135, 188);
             this.PlayFrameOpponentDeck.TabIndex = 3;
@@ -481,7 +478,7 @@
             // PlayFramePlayerDeck
             // 
             this.PlayFramePlayerDeck.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PlayFramePlayerDeck.Location = new System.Drawing.Point(29, 368);
+            this.PlayFramePlayerDeck.Location = new System.Drawing.Point(37, 364);
             this.PlayFramePlayerDeck.Name = "PlayFramePlayerDeck";
             this.PlayFramePlayerDeck.Size = new System.Drawing.Size(135, 188);
             this.PlayFramePlayerDeck.TabIndex = 2;

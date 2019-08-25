@@ -103,5 +103,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Game\Images\Faces.png" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Game\Images\Empty.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

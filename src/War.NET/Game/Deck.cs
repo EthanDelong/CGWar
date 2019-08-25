@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,6 +28,23 @@ namespace WarNET.Game
             get
             {
                 return Cards?.Count ?? 0;
+            }
+        }
+
+        private static Bitmap imageEmpty;
+
+        /// <summary>
+        /// The image to use for an empty deck.
+        /// </summary>
+        public static Bitmap Empty
+        {
+            get
+            {
+                if (imageEmpty == null)
+                {
+                    imageEmpty = new Bitmap(Assembly.GetExecutingAssembly().GetManifestResourceStream($"{GameEngine.RESOURCE_IMAGE_PATH}.Empty.png"));
+                }
+                return imageEmpty;
             }
         }
 

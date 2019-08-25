@@ -57,7 +57,11 @@ namespace WarNET.Game
         {
             get
             {
-                return imageBack ?? CreateImageBack();
+                if (imageBack == null)
+                {
+                    imageBack = new Bitmap(Assembly.GetExecutingAssembly().GetManifestResourceStream($"{GameEngine.RESOURCE_IMAGE_PATH}.Back.png"));
+                }
+                return imageBack;
             }
         }
 
@@ -96,7 +100,6 @@ namespace WarNET.Game
             Rank = rank;
             Suit = suit;
             ImageFront = CreateImageFront();
-            ImageBack = CreateImageBack();
         }
 
         /// <summary>
@@ -116,18 +119,6 @@ namespace WarNET.Game
                 cardFaces.Add(GetHashCode().ToString(), cardFace);
             }
             return cardFace;
-        }
-
-        /// <summary>
-        /// Get the back image of the card. Only need to create once since the back won't change.
-        /// </summary>
-        private static Bitmap CreateImageBack()
-        {
-            if (imageBack == null)
-            {
-                imageBack = new Bitmap(Assembly.GetExecutingAssembly().GetManifestResourceStream($"{GameEngine.RESOURCE_IMAGE_PATH}.Back.png"));
-            }
-            return imageBack;
         }
 
         public override bool Equals(object obj)
