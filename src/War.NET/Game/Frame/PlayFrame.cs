@@ -18,9 +18,19 @@ namespace WarNET.Game.Frame
         private Panel PlayerCard;
 
         /// <summary>
+        /// The panel with the player's deck.
+        /// </summary>
+        private Panel PlayerDeck;
+
+        /// <summary>
         /// The panel for the image of the opponent's played card.
         /// </summary>
         private Panel OpponentCard;
+
+        /// <summary>
+        /// The panel for the image of the opponent's deck.
+        /// </summary>
+        private Panel OpponentDeck;
 
         public override void HandleControl_Load(Control control)
         {
@@ -30,8 +40,18 @@ namespace WarNET.Game.Frame
                     PlayerCard = (Panel)control;
                     break;
 
+                case "PlayFramePlayerDeck":
+                    PlayerDeck = (Panel)control;
+                    PlayerDeck.BackgroundImage = Card.Back;
+                    break;
+
                 case "PlayFrameOpponentCard":
                     OpponentCard = (Panel)control;
+                    break;
+
+                case "PlayFrameOpponentDeck":
+                    OpponentDeck = (Panel)control;
+                    OpponentDeck.BackgroundImage = Card.Back;
                     break;
             }
         }

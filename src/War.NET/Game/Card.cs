@@ -46,24 +46,55 @@ namespace WarNET.Game
         public Image ImageFront;
 
         /// <summary>
-        /// The image width of the cards.
+        /// The image of the back of the card.
         /// </summary>
-        private int cardWidth = 180;
+        public Image ImageBack;
+
+        /// <summary>
+        /// Returns the default image of the back of a card.
+        /// </summary>
+        public static Image Back
+        {
+            get
+            {
+                return imageBack ?? CreateImageBack();
+            }
+        }
+
+        /// <summary>
+        /// Stores the static image of the back of the card. Only created once.
+        /// </summary>
+        private static Image imageBack;
 
         /// <summary>
         /// The image width of the cards.
         /// </summary>
-        private int cardWidthSpacing = 24;
+        private const int CARD_WIDTH = 180;
+
+        /// <summary>
+        /// The image width of the cards.
+        /// </summary>
+        private const int CARD_WIDTH_SPACING = 24;
 
         /// <summary>
         /// The image height of the cards.
         /// </summary>
-        private int cardHeight = 250;
+        private const int CARD_HEIGHT = 250;
 
         /// <summary>
         /// The image height of the cards.
         /// </summary>
-        private int cardHeightSpacing = 17;
+        private const int CARD_HEIGHT_SPACING= 17;
+
+        /// <summary>
+        /// Dictionary containing all source map images for each suit.
+        /// </summary>
+        private static Dictionary<string, Bitmap> sourceMaps = new Dictionary<string, Bitmap>();
+
+        /// <summary>
+        /// Dictionary containing all card faces.
+        /// </summary>
+        private static Dictionary<string, Bitmap> cardFaces = new Dictionary<string, Bitmap>();
 
         /// <summary>
         /// Create a new card with a pre-defined rank and suit.
@@ -75,6 +106,7 @@ namespace WarNET.Game
             Rank = rank;
             Suit = suit;
             ImageFront = CreateImageFront();
+            ImageBack = CreateImageBack();
         }
 
         /// <summary>
@@ -83,14 +115,35 @@ namespace WarNET.Game
         /// <returns></returns>
         public Image CreateImageFront()
         {
-            var sourceMap = new Bitmap(Assembly.GetExecutingAssembly().GetManifestResourceStream($"{GameEngine.RESOURCE_IMAGE_PATH}.{Suit}.png"));
-            int i = Rank == Rank.Ace ? 0 : (int)Rank + 1;
-            int offsetX = i % 5 * (cardWidth + cardWidthSpacing);
-            offsetX = offsetX > sourceMap.Width - cardWidth ? (sourceMap.Width - cardWidth) : offsetX;
-            int offsetY = (int)Math.Floor(i / 5.0) * (cardHeight + cardHeightSpacing);
-            offsetY = offsetY > sourceMap.Height - cardHeight ? (sourceMap.Height - cardHeight) : offsetY;
+            if (!sourceMaps.TryGetValue(Suit.ToString(), out Bitmap sourceMap))
+            {
+                sourceMap = new Bitmap(Assembly.GetExecutingAssembly().GetManifestResourceStream($"{GameEngine.RESOURCE_IMAGE_PATH}.{Suit}.png"));
+                sourceMaps.Add(Suit.ToString(), sourceMap);
+            }
+            if(!cardFaces.TryGetValue(GetHashCode().ToString(), out Bitmap cardFace))
+            {
+                int i = Rank == Rank.Ace ? 0 : (int)Rank + 1;
+                int offsetX = i % 5 * (CARD_WIDTH + CARD_WIDTH_SPACING);
+                offsetX = offsetX > sourceMap.Width - CARD_WIDTH ? (sourceMap.Width - CARD_WIDTH) : offsetX;
+                int offsetY = (int)Math.Floor(i / 5.0) * (CARD_HEIGHT + CARD_HEIGHT_SPACING);
+                offsetY = offsetY > sourceMap.Height - CARD_HEIGHT ? (sourceMap.Height - CARD_HEIGHT) : offsetY;
 
-            return sourceMap.Clone(new Rectangle(offsetX, offsetY, cardWidth, cardHeight), sourceMap.PixelFormat);
+                cardFace = sourceMap.Clone(new Rectangle(offsetX, offsetY, CARD_WIDTH, CARD_HEIGHT), sourceMap.PixelFormat);
+                cardFaces.Add(GetHashCode().ToString(), cardFace);
+            }
+            return cardFace;
+        }
+
+        /// <summary>
+        /// Get the back image of the card. Only need to create once since the back won't change.
+        /// </summary>
+        private static Image CreateImageBack()
+        {
+            if (imageBack == null)
+            {
+                imageBack = new Bitmap(Assembly.GetExecutingAssembly().GetManifestResourceStream($"{GameEngine.RESOURCE_IMAGE_PATH}.Back.png"));
+            }
+            return imageBack;
         }
 
         public override bool Equals(object obj)
