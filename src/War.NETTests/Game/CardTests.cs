@@ -13,8 +13,6 @@ namespace WarNET.Game.Tests
     [TestClass()]
     public class CardTests
     {
-        private const string TEST_GAME_IMAGE_PATH = "WarNET.Game.Tests.Game.Images";
-
         /// <summary>
         /// Card comparison testing since we wrote a custom equal function that will be critical to war plays.
         /// </summary>
