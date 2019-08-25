@@ -105,11 +105,11 @@ namespace WarNET.Game
             }
             else
             {
-                SetFrame("NewGame");
                 Player = new Player();
                 Opponent = new Player();
                 Deck.Deal(Player, Opponent);
                 Round = new Round(this);
+                SetFrame("Play");
             }
         }
 

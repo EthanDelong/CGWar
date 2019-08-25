@@ -62,7 +62,7 @@ namespace WarNET.Game.Frame
             {
                 case "NewGameButtonStart":
                     Game.Deck.Shuffle(shuffleCount, cutIndex);
-                    Game.SetFrame("Play");
+                    Game.Start();
                     break;
 
                 case "NewGameButtonCancel":

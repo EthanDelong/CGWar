@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "War.NET", "War.NET.csproj", "{FE498D5F-2D8E-408F-9ADC-84AEE02B26C6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "War.NET", "War.NET\War.NET.csproj", "{FE498D5F-2D8E-408F-9ADC-84AEE02B26C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "War.NETTests", "..\War.NETTests\War.NETTests.csproj", "{598812B4-86DE-44F4-AE0E-60CE28B389ED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "War.NETTests", "War.NETTests\War.NETTests.csproj", "{598812B4-86DE-44F4-AE0E-60CE28B389ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

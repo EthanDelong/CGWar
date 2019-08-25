@@ -20,11 +20,11 @@ namespace WarNET.Game.Frame
             switch (control.Name)
             {
                 case "HomeButtonNewGame":
-                    Game.Start();
+                    Game.SetFrame("NewGame");
                     break;
 
                 case "HomeButtonContinue":
-                    Game.Start(true);
+                    // Game.Start(true);
                     break;
 
                 case "HomeButtonSettings":
