@@ -30,6 +30,15 @@ namespace WarNET.Game
         }
 
         /// <summary>
+        /// Creates a deck from an existing set of cards.
+        /// </summary>
+        /// <param name="cards"></param>
+        public Deck(List<Card> cards)
+        {
+            Cards = cards.ToList();
+        }
+
+        /// <summary>
         /// Initialize the deck by getting a new set of cards and shuffling them.
         /// </summary>
         public Deck(int shuffleCount = 8, int? cutIndex = null, int randomSeed = 0)

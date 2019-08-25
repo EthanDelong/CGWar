@@ -16,7 +16,7 @@ namespace WarNET.Game
         /// <summary>
         /// The set of cards that this player is holding.
         /// </summary>
-        private List<Card> Hand;
+        public List<Card> Hand;
 
         /// <summary>
         /// Returns the size of the player's hand.
@@ -41,9 +41,22 @@ namespace WarNET.Game
         /// Gives the specified card to this player, adding it to the top of their hand.
         /// </summary>
         /// <param name="card">The card to add to this player's hand.</param>
-        public void GiveCard(Card card)
+        /// <param name="insertTop">Whether to add this card to the top of the hand or not.</param>
+        public void GiveCard(Card card, bool insertTop = true)
         {
-            Hand.Insert(0, card);
+            if (insertTop)
+                Hand.Insert(0, card);
+            else
+                Hand.Add(card);
+        }
+
+        /// <summary>
+        /// Gives the specified cards to this player, adding it to the end of their hand.
+        /// </summary>
+        /// <param name="card">The cards to add to this player's hand.</param>
+        public void GiveCardsAtEnd(params Card[] cards)
+        {
+            cards.ToList().ForEach(c => GiveCard(c, false));
         }
 
         /// <summary>

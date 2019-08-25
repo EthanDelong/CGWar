@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,12 +33,37 @@ namespace WarNET.Game
         /// <summary>
         /// The rank of the card.
         /// </summary>
-        readonly Rank Rank;
+        public readonly Rank Rank;
 
         /// <summary>
         /// The suit the card belongs to.
         /// </summary>
-        readonly Suit Suit;
+        public readonly Suit Suit;
+
+        /// <summary>
+        /// The image of the front of the card.
+        /// </summary>
+        public Image ImageFront;
+
+        /// <summary>
+        /// The image width of the cards.
+        /// </summary>
+        private int cardWidth = 180;
+
+        /// <summary>
+        /// The image width of the cards.
+        /// </summary>
+        private int cardWidthSpacing = 24;
+
+        /// <summary>
+        /// The image height of the cards.
+        /// </summary>
+        private int cardHeight = 250;
+
+        /// <summary>
+        /// The image height of the cards.
+        /// </summary>
+        private int cardHeightSpacing = 17;
 
         /// <summary>
         /// Create a new card with a pre-defined rank and suit.
@@ -46,6 +74,23 @@ namespace WarNET.Game
         {
             Rank = rank;
             Suit = suit;
+            ImageFront = CreateImageFront();
+        }
+
+        /// <summary>
+        /// Creates the card's front image.
+        /// </summary>
+        /// <returns></returns>
+        public Image CreateImageFront()
+        {
+            var sourceMap = new Bitmap(Assembly.GetExecutingAssembly().GetManifestResourceStream($"{GameEngine.RESOURCE_IMAGE_PATH}.{Suit}.png"));
+            int i = Rank == Rank.Ace ? 0 : (int)Rank + 1;
+            int offsetX = i % 5 * (cardWidth + cardWidthSpacing);
+            offsetX = offsetX > sourceMap.Width - cardWidth ? (sourceMap.Width - cardWidth) : offsetX;
+            int offsetY = (int)Math.Floor(i / 5.0) * (cardHeight + cardHeightSpacing);
+            offsetY = offsetY > sourceMap.Height - cardHeight ? (sourceMap.Height - cardHeight) : offsetY;
+
+            return sourceMap.Clone(new Rectangle(offsetX, offsetY, cardWidth, cardHeight), sourceMap.PixelFormat);
         }
 
         public override bool Equals(object obj)

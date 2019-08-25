@@ -12,6 +12,8 @@ namespace WarNET.Game
 {
     public class GameEngine
     {
+        public static string RESOURCE_IMAGE_PATH = $"{typeof(GameEngine).Namespace}.Images";
+
         /// <summary>
         /// The deck is created when the game engine is created. For new games, we 
         /// will re-shuffle the same deck instead of creating a new one each time.
@@ -32,30 +34,19 @@ namespace WarNET.Game
         private Dictionary<string, FrameBase> frames;
 
         /// <summary>
-        /// Gets or sets the round through the property settings.
+        /// The current game round.
         /// </summary>
-        public int Round
-        {
-            get
-            {
-                return int.TryParse(Settings.Default.GameRound, out int round) ? round : 0;
-            }
-            set
-            {
-                Settings.Default.GameRound = value.ToString();
-                Settings.Default.Save();
-            }
-        }
+        public Round Round;
 
         /// <summary>
         /// The current player.
         /// </summary>
-        private Player player;
+        public Player Player;
 
         /// <summary>
         /// The opponent.
         /// </summary>
-        private Player opponent;
+        public Player Opponent;
 
         /// <summary>
         /// Create a new game.
@@ -115,10 +106,49 @@ namespace WarNET.Game
             else
             {
                 SetFrame("NewGame");
-                Round = 0;
-                player = new Player();
-                opponent = new Player();
+                Player = new Player();
+                Opponent = new Player();
+                Deck.Deal(Player, Opponent);
+                Round = new Round(this);
             }
+        }
+
+        /// <summary>
+        /// Plays the round.
+        /// </summary>
+        public Round.Result PlayRound()
+        {
+            return Round.Play();
+        }
+
+        /// <summary>
+        /// Attempts to load existing game settings.
+        /// </summary>
+        /// <returns>true if the game was able to load existing settings</returns>
+        public bool Load()
+        {
+            // TODO: Try and load the game settings. If cards deserialize, success.
+            return false;
+        }
+
+        /// <summary>
+        /// Saves the current game settings.
+        /// </summary>
+        public void Save()
+        {
+            // The below properties are managed automatically outside of here.
+
+            // Settings.Default.GamePlayerName
+            // Settings.Default.GameOpponentName
+            // Settings.Default.GameRound
+
+            // TODO: Serialize cards in the game to a custom format
+            // Settings.Default.GameCards = "";
+
+            Settings.Default.GamePlayerHandSize = (Player?.CardsLeft ?? 0).ToString();
+            Settings.Default.GameOpponentHandSize = (Opponent?.CardsLeft ?? 0).ToString();
+
+            Settings.Default.Save();
         }
 
         /// <summary>
@@ -165,36 +195,6 @@ namespace WarNET.Game
             {
                 frame.HandleControl_ValueChanged(trackBar);
             }
-        }
-
-        /// <summary>
-        /// Attempts to load existing game settings.
-        /// </summary>
-        /// <returns>true if the game was able to load existing settings</returns>
-        public bool Load()
-        {
-            // TODO: Try and load the game settings. If cards deserialize, success.
-            return false;
-        }
-
-        /// <summary>
-        /// Saves the current game settings.
-        /// </summary>
-        public void Save()
-        {
-            // The below properties are managed automatically outside of here.
-
-            // Settings.Default.GamePlayerName
-            // Settings.Default.GameOpponentName
-            // Settings.Default.GameRound
-            
-            // TODO: Serialize cards in the game to a custom format
-            // Settings.Default.GameCards = "";
-
-            Settings.Default.GamePlayerHandSize = (player?.CardsLeft ?? 0).ToString();
-            Settings.Default.GameOpponentHandSize = (opponent?.CardsLeft ?? 0).ToString();
-
-            Settings.Default.Save();
         }
 
         /// <summary>
