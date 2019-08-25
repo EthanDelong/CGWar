@@ -404,7 +404,7 @@
             // 
             // PlayFrameButtonPlay
             // 
-            this.PlayFrameButtonPlay.Location = new System.Drawing.Point(878, 539);
+            this.PlayFrameButtonPlay.Location = new System.Drawing.Point(869, 554);
             this.PlayFrameButtonPlay.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.PlayFrameButtonPlay.Name = "PlayFrameButtonPlay";
             this.PlayFrameButtonPlay.Size = new System.Drawing.Size(162, 49);
@@ -415,7 +415,7 @@
             // PlayFrameOpponentCard
             // 
             this.PlayFrameOpponentCard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PlayFrameOpponentCard.Location = new System.Drawing.Point(567, 169);
+            this.PlayFrameOpponentCard.Location = new System.Drawing.Point(460, 90);
             this.PlayFrameOpponentCard.Name = "PlayFrameOpponentCard";
             this.PlayFrameOpponentCard.Size = new System.Drawing.Size(135, 188);
             this.PlayFrameOpponentCard.TabIndex = 3;
@@ -423,7 +423,7 @@
             // PlayFramePlayerCard
             // 
             this.PlayFramePlayerCard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PlayFramePlayerCard.Location = new System.Drawing.Point(378, 169);
+            this.PlayFramePlayerCard.Location = new System.Drawing.Point(460, 284);
             this.PlayFramePlayerCard.Name = "PlayFramePlayerCard";
             this.PlayFramePlayerCard.Size = new System.Drawing.Size(135, 188);
             this.PlayFramePlayerCard.TabIndex = 3;
@@ -481,7 +481,7 @@
             // PlayFramePlayerDeck
             // 
             this.PlayFramePlayerDeck.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PlayFramePlayerDeck.Location = new System.Drawing.Point(30, 377);
+            this.PlayFramePlayerDeck.Location = new System.Drawing.Point(29, 368);
             this.PlayFramePlayerDeck.Name = "PlayFramePlayerDeck";
             this.PlayFramePlayerDeck.Size = new System.Drawing.Size(135, 188);
             this.PlayFramePlayerDeck.TabIndex = 2;
@@ -490,9 +490,9 @@
             // 
             this.PlayFrameLabelPlayer.AutoEllipsis = true;
             this.PlayFrameLabelPlayer.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::WarNET.Properties.Settings.Default, "GamePlayerName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.PlayFrameLabelPlayer.Location = new System.Drawing.Point(12, 346);
+            this.PlayFrameLabelPlayer.Location = new System.Drawing.Point(380, 564);
             this.PlayFrameLabelPlayer.Name = "PlayFrameLabelPlayer";
-            this.PlayFrameLabelPlayer.Size = new System.Drawing.Size(173, 28);
+            this.PlayFrameLabelPlayer.Size = new System.Drawing.Size(286, 28);
             this.PlayFrameLabelPlayer.TabIndex = 1;
             this.PlayFrameLabelPlayer.Text = global::WarNET.Properties.Settings.Default.GamePlayerName;
             this.PlayFrameLabelPlayer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -501,9 +501,9 @@
             // 
             this.PlayFrameLabelOpponent.AutoEllipsis = true;
             this.PlayFrameLabelOpponent.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::WarNET.Properties.Settings.Default, "GameOpponentName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.PlayFrameLabelOpponent.Location = new System.Drawing.Point(878, 238);
+            this.PlayFrameLabelOpponent.Location = new System.Drawing.Point(380, 8);
             this.PlayFrameLabelOpponent.Name = "PlayFrameLabelOpponent";
-            this.PlayFrameLabelOpponent.Size = new System.Drawing.Size(162, 28);
+            this.PlayFrameLabelOpponent.Size = new System.Drawing.Size(286, 28);
             this.PlayFrameLabelOpponent.TabIndex = 0;
             this.PlayFrameLabelOpponent.Text = global::WarNET.Properties.Settings.Default.GameOpponentName;
             this.PlayFrameLabelOpponent.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
