@@ -22,7 +22,7 @@ namespace WarNET.Game
     /// </summary>
     public enum Suit
     {
-        Clubs, Diamonds, Hearts, Spades
+        Clubs, Hearts, Spades, Diamonds
     }
 
     /// <summary>
@@ -43,17 +43,17 @@ namespace WarNET.Game
         /// <summary>
         /// The image of the front of the card.
         /// </summary>
-        public Image ImageFront;
+        public Bitmap ImageFront;
 
         /// <summary>
         /// The image of the back of the card.
         /// </summary>
-        public Image ImageBack;
+        public Bitmap ImageBack;
 
         /// <summary>
         /// Returns the default image of the back of a card.
         /// </summary>
-        public static Image Back
+        public static Bitmap Back
         {
             get
             {
@@ -64,32 +64,22 @@ namespace WarNET.Game
         /// <summary>
         /// Stores the static image of the back of the card. Only created once.
         /// </summary>
-        private static Image imageBack;
+        private static Bitmap imageBack;
 
         /// <summary>
         /// The image width of the cards.
         /// </summary>
-        private const int CARD_WIDTH = 180;
-
-        /// <summary>
-        /// The image width of the cards.
-        /// </summary>
-        private const int CARD_WIDTH_SPACING = 24;
+        private const int CARD_WIDTH = 135;
 
         /// <summary>
         /// The image height of the cards.
         /// </summary>
-        private const int CARD_HEIGHT = 250;
-
-        /// <summary>
-        /// The image height of the cards.
-        /// </summary>
-        private const int CARD_HEIGHT_SPACING= 17;
+        private const int CARD_HEIGHT = 188;
 
         /// <summary>
         /// Dictionary containing all source map images for each suit.
         /// </summary>
-        private static Dictionary<string, Bitmap> sourceMaps = new Dictionary<string, Bitmap>();
+        private static Bitmap sourceMap;
 
         /// <summary>
         /// Dictionary containing all card faces.
@@ -113,21 +103,15 @@ namespace WarNET.Game
         /// Creates the card's front image.
         /// </summary>
         /// <returns></returns>
-        public Image CreateImageFront()
+        public Bitmap CreateImageFront()
         {
-            if (!sourceMaps.TryGetValue(Suit.ToString(), out Bitmap sourceMap))
-            {
-                sourceMap = new Bitmap(Assembly.GetExecutingAssembly().GetManifestResourceStream($"{GameEngine.RESOURCE_IMAGE_PATH}.{Suit}.png"));
-                sourceMaps.Add(Suit.ToString(), sourceMap);
-            }
-            if(!cardFaces.TryGetValue(GetHashCode().ToString(), out Bitmap cardFace))
-            {
-                int i = Rank == Rank.Ace ? 0 : (int)Rank + 1;
-                int offsetX = i % 5 * (CARD_WIDTH + CARD_WIDTH_SPACING);
-                offsetX = offsetX > sourceMap.Width - CARD_WIDTH ? (sourceMap.Width - CARD_WIDTH) : offsetX;
-                int offsetY = (int)Math.Floor(i / 5.0) * (CARD_HEIGHT + CARD_HEIGHT_SPACING);
-                offsetY = offsetY > sourceMap.Height - CARD_HEIGHT ? (sourceMap.Height - CARD_HEIGHT) : offsetY;
+            if (sourceMap == null)
+                sourceMap = new Bitmap(Assembly.GetExecutingAssembly().GetManifestResourceStream($"{GameEngine.RESOURCE_IMAGE_PATH}.Faces.png"));
 
+            if (!cardFaces.TryGetValue(GetHashCode().ToString(), out Bitmap cardFace))
+            {
+                int offsetX = (Rank == Rank.Ace ? 0 : (int)Rank + 1) * CARD_WIDTH;
+                int offsetY = (int)Suit * CARD_HEIGHT;
                 cardFace = sourceMap.Clone(new Rectangle(offsetX, offsetY, CARD_WIDTH, CARD_HEIGHT), sourceMap.PixelFormat);
                 cardFaces.Add(GetHashCode().ToString(), cardFace);
             }
@@ -137,7 +121,7 @@ namespace WarNET.Game
         /// <summary>
         /// Get the back image of the card. Only need to create once since the back won't change.
         /// </summary>
-        private static Image CreateImageBack()
+        private static Bitmap CreateImageBack()
         {
             if (imageBack == null)
             {

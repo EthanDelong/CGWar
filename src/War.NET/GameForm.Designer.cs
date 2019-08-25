@@ -404,7 +404,7 @@
             // 
             // PlayFrameButtonPlay
             // 
-            this.PlayFrameButtonPlay.Location = new System.Drawing.Point(878, 534);
+            this.PlayFrameButtonPlay.Location = new System.Drawing.Point(878, 539);
             this.PlayFrameButtonPlay.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.PlayFrameButtonPlay.Name = "PlayFrameButtonPlay";
             this.PlayFrameButtonPlay.Size = new System.Drawing.Size(162, 49);
@@ -417,7 +417,7 @@
             this.PlayFrameOpponentCard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PlayFrameOpponentCard.Location = new System.Drawing.Point(567, 169);
             this.PlayFrameOpponentCard.Name = "PlayFrameOpponentCard";
-            this.PlayFrameOpponentCard.Size = new System.Drawing.Size(135, 192);
+            this.PlayFrameOpponentCard.Size = new System.Drawing.Size(135, 188);
             this.PlayFrameOpponentCard.TabIndex = 3;
             // 
             // PlayFramePlayerCard
@@ -425,14 +425,14 @@
             this.PlayFramePlayerCard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PlayFramePlayerCard.Location = new System.Drawing.Point(378, 169);
             this.PlayFramePlayerCard.Name = "PlayFramePlayerCard";
-            this.PlayFramePlayerCard.Size = new System.Drawing.Size(135, 192);
+            this.PlayFramePlayerCard.Size = new System.Drawing.Size(135, 188);
             this.PlayFramePlayerCard.TabIndex = 3;
             // 
             // PlayFrameLabelOpponentHandSize
             // 
             this.PlayFrameLabelOpponentHandSize.AutoSize = true;
             this.PlayFrameLabelOpponentHandSize.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::WarNET.Properties.Settings.Default, "GameOpponentHandSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.PlayFrameLabelOpponentHandSize.Location = new System.Drawing.Point(998, 12);
+            this.PlayFrameLabelOpponentHandSize.Location = new System.Drawing.Point(991, 12);
             this.PlayFrameLabelOpponentHandSize.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.PlayFrameLabelOpponentHandSize.Name = "PlayFrameLabelOpponentHandSize";
             this.PlayFrameLabelOpponentHandSize.Size = new System.Drawing.Size(18, 20);
@@ -443,7 +443,7 @@
             // 
             this.PlayFrameLabelPlayerHandSize.AutoSize = true;
             this.PlayFrameLabelPlayerHandSize.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::WarNET.Properties.Settings.Default, "GamePlayerHandSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.PlayFrameLabelPlayerHandSize.Location = new System.Drawing.Point(130, 568);
+            this.PlayFrameLabelPlayerHandSize.Location = new System.Drawing.Point(128, 568);
             this.PlayFrameLabelPlayerHandSize.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.PlayFrameLabelPlayerHandSize.Name = "PlayFrameLabelPlayerHandSize";
             this.PlayFrameLabelPlayerHandSize.Size = new System.Drawing.Size(18, 20);
@@ -453,7 +453,7 @@
             // PlayFrameLabelOpponentCards
             // 
             this.PlayFrameLabelOpponentCards.AutoSize = true;
-            this.PlayFrameLabelOpponentCards.Location = new System.Drawing.Point(915, 12);
+            this.PlayFrameLabelOpponentCards.Location = new System.Drawing.Point(908, 12);
             this.PlayFrameLabelOpponentCards.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.PlayFrameLabelOpponentCards.Name = "PlayFrameLabelOpponentCards";
             this.PlayFrameLabelOpponentCards.Size = new System.Drawing.Size(87, 20);
@@ -463,7 +463,7 @@
             // PlayFrameLabelPlayerCards
             // 
             this.PlayFrameLabelPlayerCards.AutoSize = true;
-            this.PlayFrameLabelPlayerCards.Location = new System.Drawing.Point(48, 568);
+            this.PlayFrameLabelPlayerCards.Location = new System.Drawing.Point(46, 568);
             this.PlayFrameLabelPlayerCards.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.PlayFrameLabelPlayerCards.Name = "PlayFrameLabelPlayerCards";
             this.PlayFrameLabelPlayerCards.Size = new System.Drawing.Size(87, 20);
@@ -473,26 +473,26 @@
             // PlayFrameOpponentDeck
             // 
             this.PlayFrameOpponentDeck.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PlayFrameOpponentDeck.Location = new System.Drawing.Point(906, 45);
+            this.PlayFrameOpponentDeck.Location = new System.Drawing.Point(896, 47);
             this.PlayFrameOpponentDeck.Name = "PlayFrameOpponentDeck";
-            this.PlayFrameOpponentDeck.Size = new System.Drawing.Size(135, 192);
+            this.PlayFrameOpponentDeck.Size = new System.Drawing.Size(135, 188);
             this.PlayFrameOpponentDeck.TabIndex = 3;
             // 
             // PlayFramePlayerDeck
             // 
             this.PlayFramePlayerDeck.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PlayFramePlayerDeck.Location = new System.Drawing.Point(32, 365);
+            this.PlayFramePlayerDeck.Location = new System.Drawing.Point(30, 377);
             this.PlayFramePlayerDeck.Name = "PlayFramePlayerDeck";
-            this.PlayFramePlayerDeck.Size = new System.Drawing.Size(135, 192);
+            this.PlayFramePlayerDeck.Size = new System.Drawing.Size(135, 188);
             this.PlayFramePlayerDeck.TabIndex = 2;
             // 
             // PlayFrameLabelPlayer
             // 
             this.PlayFrameLabelPlayer.AutoEllipsis = true;
             this.PlayFrameLabelPlayer.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::WarNET.Properties.Settings.Default, "GamePlayerName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.PlayFrameLabelPlayer.Location = new System.Drawing.Point(32, 334);
+            this.PlayFrameLabelPlayer.Location = new System.Drawing.Point(12, 346);
             this.PlayFrameLabelPlayer.Name = "PlayFrameLabelPlayer";
-            this.PlayFrameLabelPlayer.Size = new System.Drawing.Size(135, 28);
+            this.PlayFrameLabelPlayer.Size = new System.Drawing.Size(173, 28);
             this.PlayFrameLabelPlayer.TabIndex = 1;
             this.PlayFrameLabelPlayer.Text = global::WarNET.Properties.Settings.Default.GamePlayerName;
             this.PlayFrameLabelPlayer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -501,9 +501,9 @@
             // 
             this.PlayFrameLabelOpponent.AutoEllipsis = true;
             this.PlayFrameLabelOpponent.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::WarNET.Properties.Settings.Default, "GameOpponentName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.PlayFrameLabelOpponent.Location = new System.Drawing.Point(902, 240);
+            this.PlayFrameLabelOpponent.Location = new System.Drawing.Point(878, 238);
             this.PlayFrameLabelOpponent.Name = "PlayFrameLabelOpponent";
-            this.PlayFrameLabelOpponent.Size = new System.Drawing.Size(140, 28);
+            this.PlayFrameLabelOpponent.Size = new System.Drawing.Size(162, 28);
             this.PlayFrameLabelOpponent.TabIndex = 0;
             this.PlayFrameLabelOpponent.Text = global::WarNET.Properties.Settings.Default.GameOpponentName;
             this.PlayFrameLabelOpponent.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
