@@ -12,12 +12,7 @@ namespace WarNET.Game.Frame
     public class PlayFrame : FrameBase
     {
         public PlayFrame(GameEngine game, Panel panel) : base(game, panel) { }
-
-        /// <summary>
-        /// The panel with the player's played card.
-        /// </summary>
-        private Panel PlayerCard;
-
+        
         /// <summary>
         /// The base location of the player card panel.
         /// </summary>
@@ -32,11 +27,6 @@ namespace WarNET.Game.Frame
         /// The panel with the player's deck.
         /// </summary>
         private Panel PlayerDeck;
-
-        /// <summary>
-        /// The panel for the image of the opponent's played card.
-        /// </summary>
-        private Panel OpponentCard;
 
         /// <summary>
         /// The base location of the opponent card panel.
@@ -89,8 +79,8 @@ namespace WarNET.Game.Frame
             switch(control.Name)
             {
                 case "PlayFramePlayerCard":
-                    PlayerCard = (Panel)control;
-                    PlayerCardBase = new Point(PlayerCard.Location.X, PlayerCard.Location.Y);
+                    var playerCard = (Panel)control;
+                    PlayerCardBase = new Point(playerCard.Location.X, playerCard.Location.Y);
                     break;
 
                 case "PlayFramePlayerDeck":
@@ -99,8 +89,8 @@ namespace WarNET.Game.Frame
                     break;
 
                 case "PlayFrameOpponentCard":
-                    OpponentCard = (Panel)control;
-                    OpponentCardBase = new Point(OpponentCard.Location.X, OpponentCard.Location.Y);
+                    var oppCard = (Panel)control;
+                    OpponentCardBase = new Point(oppCard.Location.X, oppCard.Location.Y);
                     break;
 
                 case "PlayFrameOpponentDeck":
