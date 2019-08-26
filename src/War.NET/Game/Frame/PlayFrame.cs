@@ -285,7 +285,7 @@ namespace WarNET.Game.Frame
             PlayerDeckTopPanels.Concat(OpponentDeckTopPanels).ToList().ForEach(panel => panel.BringToFront());
 
             PlayerDeck.BackgroundImage = Game.Player.CardsLeft > 0 ? Card.Back : Deck.Empty;
-            OpponentDeck.BackgroundImage = Game.Player.CardsLeft > 0 ? Card.Back : Deck.Empty;
+            OpponentDeck.BackgroundImage = Game.Opponent.CardsLeft > 0 ? Card.Back : Deck.Empty;
         }
 
         private List<Panel> PlayerCardsTopPanels = new List<Panel>();
