@@ -82,7 +82,7 @@ namespace WarNET.Game
         {
             // We use reflection to create frames from the panels inside of the tabs we created.
             // As long as we follow the standard of creating a panel with {FrameName}Frame, and 
-            // make sure we have a matching IFrame extended class, it should load to our collection.
+            // make sure we have a matching FrameBase extended class, it should load to our collection.
             frames = new Dictionary<string, FrameBase>();
             foreach(Control control in gameForm.GetChildren<Panel>())
             {
