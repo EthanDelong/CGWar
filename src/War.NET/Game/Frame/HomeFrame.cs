@@ -23,12 +23,8 @@ namespace WarNET.Game.Frame
                     Game.SetFrame("NewGame");
                     break;
 
-                case "HomeButtonContinue":
-                    // Game.Start(true);
-                    break;
-
-                case "HomeButtonSettings":
-                    Game.SetFrame("Rules");
+                case "HomeButtonAbout":
+                    Game.SetFrame("About");
                     break;
             }
         }

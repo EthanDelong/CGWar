@@ -65,7 +65,8 @@ namespace WarNET.Game
             {
                 if (imageBack == null)
                 {
-                    imageBack = new Bitmap(Assembly.GetExecutingAssembly().GetManifestResourceStream($"{GameEngine.RESOURCE_IMAGE_PATH}.Back.png"));
+                    using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream($"{GameEngine.RESOURCE_PATH_IMAGES}.Back.png"))
+                        imageBack = new Bitmap(stream);
                 }
                 return imageBack;
             }
@@ -115,7 +116,10 @@ namespace WarNET.Game
         public Bitmap CreateImageFront()
         {
             if (sourceMap == null)
-                sourceMap = new Bitmap(Assembly.GetExecutingAssembly().GetManifestResourceStream($"{GameEngine.RESOURCE_IMAGE_PATH}.Faces.png"));
+            {
+                using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream($"{GameEngine.RESOURCE_PATH_IMAGES}.Faces.png"))
+                    sourceMap = new Bitmap(stream);
+            }
 
             if (!cardFaces.TryGetValue(GetHashCode().ToString(), out Bitmap cardFace))
             {

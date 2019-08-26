@@ -20,6 +20,11 @@ namespace WarNET.Game.Frame
         public Panel Panel { get; private set; }
 
         /// <summary>
+        /// The title of this frame.
+        /// </summary>
+        public string Title { get; protected set; }
+
+        /// <summary>
         /// Create a new frame within the specified game and associated panel.
         /// </summary>
         /// <param name="game"></param>
@@ -28,6 +33,7 @@ namespace WarNET.Game.Frame
         {
             Game = game;
             Panel = panel;
+            Title = GetType().Name.Replace("Frame", "");
         }
 
         /// <summary>

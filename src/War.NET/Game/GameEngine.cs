@@ -12,7 +12,9 @@ namespace WarNET.Game
 {
     public class GameEngine
     {
-        public static string RESOURCE_IMAGE_PATH = $"{typeof(GameEngine).Namespace}.Images";
+        public static string RESOURCE_PATH = $"{typeof(GameEngine).Namespace}";
+
+        public static string RESOURCE_PATH_IMAGES = $"{RESOURCE_PATH}.Images";
 
         /// <summary>
         /// The deck is created when the game engine is created. For new games, we 
@@ -174,6 +176,7 @@ namespace WarNET.Game
             // Clear the current form controls and add the panel for the specified frame.
             gameForm.Controls.Clear();
             gameForm.Controls.Add(frames[name].Panel);
+            gameForm.Text = $"War.NET - {frames[name].Title}";
 
             frames[name].Frame_Opened();
         }

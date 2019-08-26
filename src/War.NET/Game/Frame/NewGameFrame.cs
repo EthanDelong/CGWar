@@ -34,7 +34,10 @@ namespace WarNET.Game.Frame
         /// </summary>
         private int cutIndex = 0;
 
-        public NewGameFrame(GameEngine game, Panel panel) : base(game, panel) { }
+        public NewGameFrame(GameEngine game, Panel panel) : base(game, panel)
+        {
+            Title = "New Game";
+        }
         
         public override void HandleControl_Load(Control control)
         {

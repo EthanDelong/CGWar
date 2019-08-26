@@ -56,6 +56,7 @@
     </Compile>
     <Compile Include="Game\Card.cs" />
     <Compile Include="Game\Deck.cs" />
+    <Compile Include="Game\Frame\AboutFrame.cs" />
     <Compile Include="Game\Frame\HomeFrame.cs" />
     <Compile Include="Game\Frame\FrameBase.cs" />
     <Compile Include="Game\Frame\NewGameFrame.cs" />
@@ -96,7 +97,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Game\Images\Back.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Game\AboutPage.html" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Game\Images\Faces.png" />
   </ItemGroup>

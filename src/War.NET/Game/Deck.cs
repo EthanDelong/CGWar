@@ -42,7 +42,8 @@ namespace WarNET.Game
             {
                 if (imageEmpty == null)
                 {
-                    imageEmpty = new Bitmap(Assembly.GetExecutingAssembly().GetManifestResourceStream($"{GameEngine.RESOURCE_IMAGE_PATH}.Empty.png"));
+                    using(var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream($"{GameEngine.RESOURCE_PATH_IMAGES}.Empty.png"))
+                        imageEmpty = new Bitmap(stream);
                 }
                 return imageEmpty;
             }
