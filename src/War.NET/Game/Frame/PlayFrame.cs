@@ -298,8 +298,8 @@ namespace WarNET.Game.Frame
         /// </summary>
         private void UpdateFieldPanels()
         {
-            UpdateFieldCards(PlayerCard, PlayerCardBase, Game.Round.PlayerCards, ref PlayerCardsTopPanels, true);
-            UpdateFieldCards(OpponentCard, OpponentCardBase, Game.Round.OpponentCards, ref OpponentCardsTopPanels, false);
+            UpdateFieldCards(PlayerCardBase, Game.Round.PlayerCards, ref PlayerCardsTopPanels, true);
+            UpdateFieldCards(OpponentCardBase, Game.Round.OpponentCards, ref OpponentCardsTopPanels, false);
 
             // Bring them all to front
             PlayerCardsTopPanels.Concat(OpponentCardsTopPanels).ToList().ForEach(panel => panel.BringToFront());
@@ -309,19 +309,13 @@ namespace WarNET.Game.Frame
         /// Updates cards on the playing field
         /// </summary>
         /// <param name="baseLocation">The base location for the bottom card panel.</param>
-        /// <param name="bottomCard">The bottom card panel.</param>
         /// <param name="fieldCards">The current cards in the round.</param>
         /// <param name="currentPanels">The current list of card panels on the field.</param>
-        private void UpdateFieldCards(Panel bottomCard, Point baseLocation, List<Card> fieldCards, ref List<Panel> currentPanels, bool offsetNegative = false)
+        private void UpdateFieldCards(Point baseLocation, List<Card> fieldCards, ref List<Panel> currentPanels, bool offsetNegative = false)
         {
-            if (fieldCards.Count == 1)
+            if (fieldCards.Any() && fieldCards.Count != currentPanels.Count)
             {
-                bottomCard.BackgroundImage = fieldCards.Last().ImageFront;
-                bottomCard.Location = new Point(baseLocation.X + random.Next(5) * (random.Next(2) > 0 ? 1 : -1), baseLocation.Y + random.Next(5) * (random.Next(2) > 0 ? 1 : -1));
-            }
-            else if (fieldCards.Count > 1 && (fieldCards.Count - 1) != currentPanels.Count)
-            {
-                int addPanels = (fieldCards.Count - 1) - currentPanels.Count;
+                int addPanels = fieldCards.Count - currentPanels.Count;
                 do
                 {
                     int offsetX = (random.Next(2, 10));
@@ -330,11 +324,11 @@ namespace WarNET.Game.Frame
                     int offsetY = (random.Next(2, 10));
                     offsetY *= offsetNegative ? -1 : 1;
 
-                    var card = fieldCards.Skip(currentPanels.Count + 1).First();
+                    var card = fieldCards.Skip(currentPanels.Count).First();
                     var cardTop = new Panel
                     {
-                        Location = new Point(bottomCard.Location.X - offsetX, bottomCard.Location.Y - offsetY),
-                        Size = bottomCard.Size,
+                        Location = new Point(baseLocation.X - offsetX, baseLocation.Y - offsetY),
+                        Size = PlayerDeck.Size,
                         BackgroundImage = fieldCards.IndexOf(card) % (Game.WarBet + 1) == 0 ? card.ImageFront : card.ImageBack,
                         BackgroundImageLayout = ImageLayout.Stretch
                     };
@@ -345,7 +339,6 @@ namespace WarNET.Game.Frame
             }
             else
             {
-                bottomCard.BackgroundImage = null;
                 currentPanels.ForEach(panel => panel.Parent.Controls.Remove(panel));
                 currentPanels = new List<Panel>();
             }
