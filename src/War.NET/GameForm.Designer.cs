@@ -71,11 +71,11 @@
             this.PlayFrameLabelOpponent = new System.Windows.Forms.Label();
             this.framePageAbout = new System.Windows.Forms.TabPage();
             this.AboutFrame = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.AboutButtonHome = new System.Windows.Forms.Button();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.AboutFrameBrowser = new System.Windows.Forms.WebBrowser();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.AboutFrameBrowser = new System.Windows.Forms.WebBrowser();
             this.frameCollection.SuspendLayout();
             this.framePageHome.SuspendLayout();
             this.HomeFrame.SuspendLayout();
@@ -483,7 +483,7 @@
             // PlayFrameLabelPlayerHandSize
             // 
             this.PlayFrameLabelPlayerHandSize.AutoSize = true;
-            this.PlayFrameLabelPlayerHandSize.Location = new System.Drawing.Point(119, 568);
+            this.PlayFrameLabelPlayerHandSize.Location = new System.Drawing.Point(129, 567);
             this.PlayFrameLabelPlayerHandSize.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.PlayFrameLabelPlayerHandSize.Name = "PlayFrameLabelPlayerHandSize";
             this.PlayFrameLabelPlayerHandSize.Size = new System.Drawing.Size(18, 20);
@@ -503,7 +503,7 @@
             // PlayFrameLabelPlayerCards
             // 
             this.PlayFrameLabelPlayerCards.AutoSize = true;
-            this.PlayFrameLabelPlayerCards.Location = new System.Drawing.Point(70, 568);
+            this.PlayFrameLabelPlayerCards.Location = new System.Drawing.Point(80, 567);
             this.PlayFrameLabelPlayerCards.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.PlayFrameLabelPlayerCards.Name = "PlayFrameLabelPlayerCards";
             this.PlayFrameLabelPlayerCards.Size = new System.Drawing.Size(55, 20);
@@ -512,6 +512,7 @@
             // 
             // PlayFrameOpponentDeck
             // 
+            this.PlayFrameOpponentDeck.BackgroundImage = global::WarNET.Properties.Resources.Empty;
             this.PlayFrameOpponentDeck.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PlayFrameOpponentDeck.Location = new System.Drawing.Point(896, 94);
             this.PlayFrameOpponentDeck.Name = "PlayFrameOpponentDeck";
@@ -520,8 +521,9 @@
             // 
             // PlayFramePlayerDeck
             // 
+            this.PlayFramePlayerDeck.BackgroundImage = global::WarNET.Properties.Resources.Empty;
             this.PlayFramePlayerDeck.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PlayFramePlayerDeck.Location = new System.Drawing.Point(37, 364);
+            this.PlayFramePlayerDeck.Location = new System.Drawing.Point(47, 363);
             this.PlayFramePlayerDeck.Name = "PlayFramePlayerDeck";
             this.PlayFramePlayerDeck.Size = new System.Drawing.Size(135, 188);
             this.PlayFramePlayerDeck.TabIndex = 2;
@@ -530,9 +532,9 @@
             // 
             this.PlayFrameLabelPlayer.AutoEllipsis = true;
             this.PlayFrameLabelPlayer.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::WarNET.Properties.Settings.Default, "GamePlayerName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.PlayFrameLabelPlayer.Location = new System.Drawing.Point(12, 292);
+            this.PlayFrameLabelPlayer.Location = new System.Drawing.Point(16, 291);
             this.PlayFrameLabelPlayer.Name = "PlayFrameLabelPlayer";
-            this.PlayFrameLabelPlayer.Size = new System.Drawing.Size(181, 28);
+            this.PlayFrameLabelPlayer.Size = new System.Drawing.Size(194, 28);
             this.PlayFrameLabelPlayer.TabIndex = 1;
             this.PlayFrameLabelPlayer.Text = global::WarNET.Properties.Settings.Default.GamePlayerName;
             this.PlayFrameLabelPlayer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -568,6 +570,30 @@
             this.AboutFrame.Size = new System.Drawing.Size(1050, 596);
             this.AboutFrame.TabIndex = 0;
             // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 5;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 162F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 162F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 162F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.AboutButtonHome, 2, 4);
+            this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.groupBox1, 0, 1);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 6;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 180F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1050, 596);
+            this.tableLayoutPanel2.TabIndex = 14;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -593,40 +619,6 @@
             this.AboutButtonHome.Text = "Return Home";
             this.AboutButtonHome.UseVisualStyleBackColor = true;
             // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 5;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 162F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 162F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 162F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.AboutButtonHome, 2, 4);
-            this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.groupBox1, 0, 1);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 6;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 180F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1050, 596);
-            this.tableLayoutPanel2.TabIndex = 14;
-            // 
-            // AboutFrameBrowser
-            // 
-            this.AboutFrameBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AboutFrameBrowser.Location = new System.Drawing.Point(3, 22);
-            this.AboutFrameBrowser.Margin = new System.Windows.Forms.Padding(50, 3, 50, 3);
-            this.AboutFrameBrowser.MinimumSize = new System.Drawing.Size(20, 20);
-            this.AboutFrameBrowser.Name = "AboutFrameBrowser";
-            this.AboutFrameBrowser.Size = new System.Drawing.Size(944, 241);
-            this.AboutFrameBrowser.TabIndex = 4;
-            // 
             // groupBox1
             // 
             this.tableLayoutPanel2.SetColumnSpan(this.groupBox1, 5);
@@ -639,6 +631,16 @@
             this.groupBox1.Size = new System.Drawing.Size(950, 266);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
+            // 
+            // AboutFrameBrowser
+            // 
+            this.AboutFrameBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AboutFrameBrowser.Location = new System.Drawing.Point(3, 22);
+            this.AboutFrameBrowser.Margin = new System.Windows.Forms.Padding(50, 3, 50, 3);
+            this.AboutFrameBrowser.MinimumSize = new System.Drawing.Size(20, 20);
+            this.AboutFrameBrowser.Name = "AboutFrameBrowser";
+            this.AboutFrameBrowser.Size = new System.Drawing.Size(944, 241);
+            this.AboutFrameBrowser.TabIndex = 4;
             // 
             // GameForm
             // 
