@@ -196,7 +196,7 @@ namespace WarNET.Game
         }
 
         /// <summary>
-        /// Handle control clicks through the parent frame.
+        /// Handle trackbar value changes through parent frame.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
