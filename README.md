@@ -1,6 +1,6 @@
 # War.NET
 
-.NET Forms implementation of the popular card game "War"
+War.NET is a .NET Forms application based on the popular card game "War".
 
 # Rules
 
@@ -21,3 +21,15 @@ If the cards are the same rank, it is War. Each player turns up one card face do
 **HOW TO KEEP SCORE**
 
 The game ends when one player has won all the cards.
+
+# Image Credit
+
+The card face image in this project was created with the help of Vectorized Playing Cards 3.1
+
+**Vectorized Playing Cards 3.1**
+
+https://totalnonsense.com/open-source-vector-playing-cards/
+
+Copyright 2011,2019 – Chris Aguilar – conjurenation at gmail dot com
+
+Licensed under: LGPL 3.0 – https://www.gnu.org/licenses/lgpl-3.0.html
