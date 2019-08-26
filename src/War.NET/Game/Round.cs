@@ -13,12 +13,14 @@ namespace WarNET.Game
         /// </summary>
         public enum Result
         {
+            DEFAULT_NULL = 0,
             NOT_PLAYED,
             PLAYER_WIN,
             OPPONENT_WIN,
             WAR,
             GAMEOVER_PLAYER_WIN,
-            GAMEOVER_OPPONENT_WIN
+            GAMEOVER_OPPONENT_WIN,
+            GAMEOVER_TIE
         }
 
         /// <summary>
@@ -45,7 +47,7 @@ namespace WarNET.Game
             Game = game;
             PlayerCards = new List<Card>();
             OpponentCards = new List<Card>();
-            Count = 0;
+            Count = 1;
         }
 
         /// <summary>
@@ -62,19 +64,38 @@ namespace WarNET.Game
         /// Plays the round and returns the result.
         /// </summary>
         /// <returns>The result of the round.</returns>
-        public Result Play()
+        public Result Next()
         {
+            LastResult = Result.NOT_PLAYED;
+
             var playerCard = Game.Player.PlayNext();
-            if (playerCard == null)
-                return Result.GAMEOVER_OPPONENT_WIN;
-            PlayerCards.Add(playerCard);
-
             var opponentCard = Game.Opponent.PlayNext();
-            if (opponentCard == null)
-                return Result.GAMEOVER_PLAYER_WIN;
-            OpponentCards.Add(opponentCard);
 
-            return playerCard.Rank == opponentCard.Rank ? Result.WAR : (playerCard.Rank > opponentCard.Rank ? Result.PLAYER_WIN : Result.OPPONENT_WIN);
+            if (playerCard == null && opponentCard == null)
+            {
+                LastResult = Result.GAMEOVER_TIE;
+            }
+            else if(playerCard == null)
+            {
+                LastResult = Result.GAMEOVER_OPPONENT_WIN;
+            }
+            else if(opponentCard == null)
+            {
+                LastResult = Result.GAMEOVER_PLAYER_WIN;
+            }
+            else if(LastResult == Result.WAR)
+            {
+                PlayerCards.Add(playerCard);
+                OpponentCards.Add(opponentCard);
+                LastResult = Result.NOT_PLAYED;
+            }
+            else
+            {
+                PlayerCards.Add(playerCard);
+                OpponentCards.Add(opponentCard);
+                LastResult = playerCard.Rank == opponentCard.Rank ? Result.WAR : (playerCard.Rank > opponentCard.Rank ? Result.PLAYER_WIN : Result.OPPONENT_WIN);
+            }
+            return LastResult;
         }
 
         /// <summary>
@@ -89,6 +110,7 @@ namespace WarNET.Game
                 (LastResult == Result.PLAYER_WIN ? Game.Player : Game.Opponent).GiveCardsAtEnd(roundDeck.Cards.ToArray());
                 PlayerCards = new List<Card>();
                 OpponentCards = new List<Card>();
+                Count++;
             }
 
             if(LastResult == Result.GAMEOVER_PLAYER_WIN || LastResult == Result.GAMEOVER_OPPONENT_WIN)

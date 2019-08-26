@@ -59,6 +59,16 @@ namespace WarNET.Game.Frame
         private Label CurrentRound;
 
         /// <summary>
+        /// The play button, so we can modify text.
+        /// </summary>
+        private Button ButtonPlay;
+
+        /// <summary>
+        /// The restart button, displayed at the end of game.
+        /// </summary>
+        private Button ButtonRestart;
+
+        /// <summary>
         /// Create a random object to use for random layout adjustments during play (card placement).
         /// </summary>
         private Random random = new Random();
@@ -103,22 +113,86 @@ namespace WarNET.Game.Frame
                 case "PlayFrameLabelRoundCount":
                     CurrentRound = (Label)control;
                     break;
+
+                case "PlayFrameButtonPlay":
+                    ButtonPlay = (Button)control;
+                    break;
+
+                case "PlayFrameButtonRestart":
+                    ButtonRestart = (Button)control;
+                    break;
             }
         }
+
+        private bool gameover = false;
+        private bool in_round = false;
 
         public override void HandleControl_Click(Control control)
         {
             switch(control.Name)
             {
                 case "PlayFrameButtonPlay":
-                    var result = Game.PlayRound();
-                    Update(result);
+                    if (gameover)
+                    {
+                        Finish("Home");
+                    }
+                    else if(in_round && Game.Round.LastResult != Round.Result.WAR && Game.Round.LastResult != Round.Result.NOT_PLAYED)
+                    {
+                        Game.Round.Finish();
+                        in_round = false;
+                        ButtonPlay.Text = "Play Card";
+                    }
+                    else
+                    {
+                        var result = Game.Round.Next();
+                        in_round = true;
+                        switch (result)
+                        {
+                            // GAMEOVER
+                            case Round.Result.GAMEOVER_OPPONENT_WIN:
+                            case Round.Result.GAMEOVER_PLAYER_WIN:
+                            case Round.Result.GAMEOVER_TIE:
+                                ButtonRestart.Enabled = true;
+                                ButtonRestart.Visible = true;
+                                ButtonPlay.Text = "End Game";
+                                gameover = true;
+                                break;
+
+                            // WAR
+                            case Round.Result.WAR:
+                            case Round.Result.NOT_PLAYED:
+                                ButtonPlay.Text = "Play Card";
+                                break;
+
+                            // Everything else
+                            default:
+                                ButtonPlay.Text = "Continue";
+                                break;
+                        }
+                    }
+                    Update();
+                    break;
+
+                case "PlayFrameButtonRestart":
+                    Finish("NewGame");
                     break;
             }
         }
 
-        private void Update(Round.Result result = Round.Result.NOT_PLAYED)
+        private void Finish(string nextFrame)
         {
+            Game.SetFrame(nextFrame);
+            Game.Round.Finish();
+            gameover = false;
+            ButtonPlay.Text = "Play Card";
+            ButtonRestart.Enabled = false;
+            ButtonRestart.Visible = false;
+        }
+
+        private void Update()
+        {
+            var lastResult = Game.Round.LastResult;
+
             CurrentRound.Text = $"{Game.Round.Count}";
 
             PlayerHandSize.Text = $"{Game.Player.CardsLeft}";
@@ -126,25 +200,8 @@ namespace WarNET.Game.Frame
 
             UpdateDeckPanels();
 
-            if (result == Round.Result.NOT_PLAYED)
-                return;
-            
-            if(result == Round.Result.WAR)
-            {
-                // add a new panel
-            }
-            else
-            {
-                PlayerCard.BackgroundImage = Game.Round.PlayerCards.Last().ImageFront;
-                OpponentCard.BackgroundImage = Game.Round.OpponentCards.Last().ImageFront;
-
-                PlayerCard.Location = new Point(PlayerCardBase.X + random.Next(5) * (random.Next(2) > 0 ? 1 : -1), PlayerCardBase.Y + random.Next(5) * (random.Next(2) > 0 ? 1 : -1));
-                OpponentCard.Location = new Point(OpponentCardBase.X + random.Next(5) * (random.Next(2) > 0 ? 1 : -1), OpponentCardBase.Y + random.Next(5) * (random.Next(2) > 0 ? 1 : -1));
-            }
-
-            Debug.WriteLine($"Player: {Game.Round.PlayerCards.Last()} | Opponent: {Game.Round.OpponentCards.Last()}");
+            UpdateFieldPanels();
         }
-
 
         private List<Panel> PlayerDeckTopPanels;
         private List<Panel> OpponentDeckTopPanels;
@@ -193,6 +250,67 @@ namespace WarNET.Game.Frame
 
             PlayerDeck.BackgroundImage = Game.Player.CardsLeft > 0 ? Card.Back : Deck.Empty;
             OpponentDeck.BackgroundImage = Game.Player.CardsLeft > 0 ? Card.Back : Deck.Empty;
+        }
+
+        private List<Panel> PlayerCardsTopPanels = new List<Panel>();
+        private List<Panel> OpponentCardsTopPanels = new List<Panel>();
+
+        /// <summary>
+        /// Lays out the cards on the field based on the round status.
+        /// </summary>
+        private void UpdateFieldPanels()
+        {
+            UpdateFieldCards(PlayerCard, PlayerCardBase, Game.Round.PlayerCards, ref PlayerCardsTopPanels, true);
+            UpdateFieldCards(OpponentCard, OpponentCardBase, Game.Round.OpponentCards, ref OpponentCardsTopPanels, false);
+
+            // Bring them all to front
+            PlayerCardsTopPanels.Concat(OpponentCardsTopPanels).ToList().ForEach(panel => panel.BringToFront());
+        }
+
+        /// <summary>
+        /// Updates cards on the playing field
+        /// </summary>
+        /// <param name="baseLocation">The base location for the bottom card panel.</param>
+        /// <param name="bottomCard">The bottom card panel.</param>
+        /// <param name="fieldCards">The current cards in the round.</param>
+        /// <param name="currentPanels">The current list of card panels on the field.</param>
+        private void UpdateFieldCards(Panel bottomCard, Point baseLocation, List<Card> fieldCards, ref List<Panel> currentPanels, bool offsetNegative = false)
+        {
+            if (fieldCards.Count == 1)
+            {
+                bottomCard.BackgroundImage = fieldCards.Last().ImageFront;
+                bottomCard.Location = new Point(baseLocation.X + random.Next(5) * (random.Next(2) > 0 ? 1 : -1), baseLocation.Y + random.Next(5) * (random.Next(2) > 0 ? 1 : -1));
+            }
+            else if (fieldCards.Count > 1 && (fieldCards.Count - 1) != currentPanels.Count)
+            {
+                int addPanels = (fieldCards.Count - 1) - currentPanels.Count;
+                do
+                {
+                    int offsetX = (random.Next(2, 10));
+                    offsetX *= random.Next(2) == 0 ? -1 : 1;
+
+                    int offsetY = (random.Next(2, 10));
+                    offsetY *= offsetNegative ? -1 : 1;
+
+                    var card = fieldCards.Skip(currentPanels.Count + 1).First();
+                    var cardTop = new Panel
+                    {
+                        Location = new Point(bottomCard.Location.X - offsetX, bottomCard.Location.Y - offsetY),
+                        Size = bottomCard.Size,
+                        BackgroundImage = fieldCards.IndexOf(card) % 2 == 0 ? card.ImageFront : card.ImageBack,
+                        BackgroundImageLayout = ImageLayout.Stretch
+                    };
+                    Panel.Controls.Add(cardTop);
+                    currentPanels.Add(cardTop);
+                }
+                while (--addPanels > 0);
+            }
+            else
+            {
+                bottomCard.BackgroundImage = null;
+                currentPanels.ForEach(panel => panel.Parent.Controls.Remove(panel));
+                currentPanels = new List<Panel>();
+            }
         }
     }
 }

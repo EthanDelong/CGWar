@@ -114,14 +114,6 @@ namespace WarNET.Game
         }
 
         /// <summary>
-        /// Plays the round.
-        /// </summary>
-        public Round.Result PlayRound()
-        {
-            return Round.Play();
-        }
-
-        /// <summary>
         /// Attempts to load existing game settings.
         /// </summary>
         /// <returns>true if the game was able to load existing settings</returns>

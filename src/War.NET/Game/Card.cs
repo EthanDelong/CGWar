@@ -48,7 +48,13 @@ namespace WarNET.Game
         /// <summary>
         /// The image of the back of the card.
         /// </summary>
-        public Bitmap ImageBack;
+        public Bitmap ImageBack
+        {
+            get
+            {
+                return Back;
+            }
+        }
 
         /// <summary>
         /// Returns the default image of the back of a card.
