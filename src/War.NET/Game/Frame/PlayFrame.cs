@@ -150,8 +150,15 @@ namespace WarNET.Game.Frame
                     {
                         Game.Round.Finish();
                         in_round = false;
-                        ButtonPlay.Text = "Play Card";
-                        Status.Text = "";
+                        if(Game.Round.LastResult == Round.Result.GAMEOVER_TIE_MAXROUNDS)
+                        {
+                            GameOver($"Max rounds reached, game ends in a tie!");
+                        }
+                        else
+                        {
+                            ButtonPlay.Text = "Play Card";
+                            Status.Text = "";
+                        }
                     }
                     else
                     {
@@ -222,6 +229,7 @@ namespace WarNET.Game.Frame
             Game.SetFrame(nextFrame);
             Game.Round.Finish();
             gameover = false;
+            in_round = false;
             ButtonPlay.Text = "Play Card";
             ButtonRestart.Enabled = false;
             ButtonRestart.Visible = false;
