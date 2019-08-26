@@ -49,6 +49,21 @@ namespace WarNET.Game
         public Player Opponent;
 
         /// <summary>
+        /// The max rounds to play the game until it declares a tie.
+        /// </summary>
+        public int MaxRounds = MAXROUNDS_UPPER / 2;
+
+        /// <summary>
+        /// The upper bounds of the max rounds setting. Any rounds set >= this will be considered "infinite".
+        /// </summary>
+        public const int MAXROUNDS_UPPER = 1000;
+
+        /// <summary>
+        /// The amount of face-down cards to bet during a war.
+        /// </summary>
+        public int WarBet = 3;
+
+        /// <summary>
         /// Create a new game.
         /// </summary>
         /// <param name="gameForm">Reference the main form for our game's ui.</param>

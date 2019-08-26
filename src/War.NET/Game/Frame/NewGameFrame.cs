@@ -49,6 +49,16 @@ namespace WarNET.Game.Frame
                     ((TrackBar)control).SetRange(0, Game.Deck.Size);
                     ((TrackBar)control).Value = Game.Deck.Size / 2;
                     break;
+
+                case "NewGameMaxRoundsSlider":
+                    ((TrackBar)control).SetRange(10, 1000);
+                    ((TrackBar)control).Value = Game.MaxRounds;
+                    break;
+
+                case "NewGameWarBetSlider":
+                    ((TrackBar)control).SetRange(1, 5);
+                    ((TrackBar)control).Value = Game.WarBet;
+                    break;
             }
         }
 
@@ -78,9 +88,7 @@ namespace WarNET.Game.Frame
 
         private void UpdateScrollText(TrackBar trackBar)
         {
-            Label label = new Label();
-            trackBar.Parent.Text = $"{trackBar.Parent.Text.Split(':')[0]}: {trackBar.Value}";
-
+            string customText = null;
             switch (trackBar.Name)
             {
                 case "NewGameDeckShuffleSlider":
@@ -90,7 +98,20 @@ namespace WarNET.Game.Frame
                 case "NewGameDeckCutSlider":
                     cutIndex = trackBar.Value;
                     break;
+
+                case "NewGameMaxRoundsSlider":
+                    Game.MaxRounds = trackBar.Value;
+                    if(trackBar.Value >= GameEngine.MAXROUNDS_UPPER)
+                        customText = "Infinite";
+                    break;
+
+                case "NewGameWarBetSlider":
+                    Game.WarBet = trackBar.Value;
+                    break;
             }
+
+            Label label = new Label();
+            trackBar.Parent.Text = $"{trackBar.Parent.Text.Split(':')[0]}: {customText ?? trackBar.Value.ToString()}";
         }
     }
 }

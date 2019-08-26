@@ -69,12 +69,18 @@ namespace WarNET.Game.Frame
         private Button ButtonRestart;
 
         /// <summary>
+        /// Status label at top of frame.
+        /// </summary>
+        private Label Status;
+
+        /// <summary>
         /// Create a random object to use for random layout adjustments during play (card placement).
         /// </summary>
         private Random random = new Random();
 
         public override void Frame_Opened()
         {
+            Status.Text = "";
             Update();
         }
 
@@ -121,6 +127,10 @@ namespace WarNET.Game.Frame
                 case "PlayFrameButtonRestart":
                     ButtonRestart = (Button)control;
                     break;
+
+                case "PlayFrameStatus":
+                    Status = (Label)control;
+                    break;
             }
         }
 
@@ -141,6 +151,7 @@ namespace WarNET.Game.Frame
                         Game.Round.Finish();
                         in_round = false;
                         ButtonPlay.Text = "Play Card";
+                        Status.Text = "";
                     }
                     else
                     {
@@ -150,24 +161,41 @@ namespace WarNET.Game.Frame
                         {
                             // GAMEOVER
                             case Round.Result.GAMEOVER_OPPONENT_WIN:
+                                GameOver($"{Properties.Settings.Default.GameOpponentName} wins game!");
+                                break;
+
                             case Round.Result.GAMEOVER_PLAYER_WIN:
+                                GameOver($"{Properties.Settings.Default.GamePlayerName} wins game!");
+                                break;
+
                             case Round.Result.GAMEOVER_TIE:
-                                ButtonRestart.Enabled = true;
-                                ButtonRestart.Visible = true;
-                                ButtonPlay.Text = "End Game";
-                                gameover = true;
-                                Game.Round.Finish();
+                                GameOver($"The game is a tie!");
+                                break;
+
+                            case Round.Result.GAMEOVER_TIE_MAXROUNDS:
+                                GameOver($"Max rounds reached, game ends in a tie!");
                                 break;
 
                             // WAR
                             case Round.Result.WAR:
-                            case Round.Result.NOT_PLAYED:
-                                ButtonPlay.Text = "Play Card";
+                                ButtonPlay.Text = "Place Bet";
+                                Status.Text = $"Get ready! Bet {Game.WarBet} card{(Game.WarBet > 1 ? "s" : "")}! - {Game.Round.CurrentWarBet}/{Game.WarBet}";
                                 break;
 
-                            // Everything else
-                            default:
-                                ButtonPlay.Text = "Continue";
+                            case Round.Result.NOT_PLAYED:
+                                ButtonPlay.Text = "Play Card";
+                                Status.Text = "WAR!!!";
+                                break;
+                                
+                            // ROUND WINNINGS
+                            case Round.Result.PLAYER_WIN:
+                                Status.Text = $"{Properties.Settings.Default.GamePlayerName} wins {Game.Round.Pool.Count} cards!";
+                                ButtonPlay.Text = "Next Round";
+                                break;
+
+                            case Round.Result.OPPONENT_WIN:
+                                Status.Text = $"{Properties.Settings.Default.GameOpponentName} wins {Game.Round.Pool.Count} cards!";
+                                ButtonPlay.Text = "Next Round";
                                 break;
                         }
                     }
@@ -178,6 +206,15 @@ namespace WarNET.Game.Frame
                     Finish("NewGame");
                     break;
             }
+        }
+
+        private void GameOver(string statusMessage)
+        {
+            Status.Text = statusMessage;
+            ButtonRestart.Enabled = true;
+            ButtonRestart.Visible = true;
+            ButtonPlay.Text = "End Game";
+            gameover = true;
         }
 
         private void Finish(string nextFrame)
@@ -298,7 +335,7 @@ namespace WarNET.Game.Frame
                     {
                         Location = new Point(bottomCard.Location.X - offsetX, bottomCard.Location.Y - offsetY),
                         Size = bottomCard.Size,
-                        BackgroundImage = fieldCards.IndexOf(card) % 2 == 0 ? card.ImageFront : card.ImageBack,
+                        BackgroundImage = fieldCards.IndexOf(card) % (Game.WarBet + 1) == 0 ? card.ImageFront : card.ImageBack,
                         BackgroundImageLayout = ImageLayout.Stretch
                     };
                     Panel.Controls.Add(cardTop);

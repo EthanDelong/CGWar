@@ -60,7 +60,6 @@
     <Compile Include="Game\Frame\FrameBase.cs" />
     <Compile Include="Game\Frame\NewGameFrame.cs" />
     <Compile Include="Game\Frame\PlayFrame.cs" />
-    <Compile Include="Game\Frame\RulesFrame.cs" />
     <Compile Include="Game\GameEngine.cs" />
     <Compile Include="Game\Player.cs" />
     <Compile Include="Game\Round.cs" />
@@ -97,9 +96,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Game\Images\Back.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Game\Rules\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Game\Images\Faces.png" />
   </ItemGroup>

@@ -61,6 +61,13 @@
             this.PlayFrameLabelPlayer = new System.Windows.Forms.Label();
             this.PlayFrameLabelOpponent = new System.Windows.Forms.Label();
             this.PlayFrameButtonRestart = new System.Windows.Forms.Button();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.NewGameBoxMaxRounds = new System.Windows.Forms.GroupBox();
+            this.NewGameMaxRoundsSlider = new System.Windows.Forms.TrackBar();
+            this.gbWarBet = new System.Windows.Forms.GroupBox();
+            this.NewGameWarBetSlider = new System.Windows.Forms.TrackBar();
+            this.NewGameTitle = new System.Windows.Forms.Label();
+            this.PlayFrameStatus = new System.Windows.Forms.Label();
             this.frameCollection.SuspendLayout();
             this.framePageHome.SuspendLayout();
             this.HomeFrame.SuspendLayout();
@@ -72,6 +79,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.NewGameDeckShuffleSlider)).BeginInit();
             this.framePagePlay.SuspendLayout();
             this.PlayFrame.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.NewGameBoxMaxRounds.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NewGameMaxRoundsSlider)).BeginInit();
+            this.gbWarBet.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NewGameWarBetSlider)).BeginInit();
             this.SuspendLayout();
             // 
             // frameCollection
@@ -101,8 +113,7 @@
             // 
             // HomeFrame
             // 
-            this.HomeFrame.Controls.Add(this.HomeButtonNewGame);
-            this.HomeFrame.Controls.Add(this.HomeTitle);
+            this.HomeFrame.Controls.Add(this.tableLayoutPanel1);
             this.HomeFrame.Dock = System.Windows.Forms.DockStyle.Fill;
             this.HomeFrame.Location = new System.Drawing.Point(4, 5);
             this.HomeFrame.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -112,8 +123,9 @@
             // 
             // HomeButtonNewGame
             // 
-            this.HomeButtonNewGame.Location = new System.Drawing.Point(417, 334);
-            this.HomeButtonNewGame.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.HomeButtonNewGame.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.HomeButtonNewGame.Location = new System.Drawing.Point(443, 325);
+            this.HomeButtonNewGame.Margin = new System.Windows.Forms.Padding(0);
             this.HomeButtonNewGame.Name = "HomeButtonNewGame";
             this.HomeButtonNewGame.Size = new System.Drawing.Size(162, 49);
             this.HomeButtonNewGame.TabIndex = 2;
@@ -123,13 +135,16 @@
             // HomeTitle
             // 
             this.HomeTitle.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.HomeTitle, 3);
+            this.HomeTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.HomeTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HomeTitle.Location = new System.Drawing.Point(388, 188);
-            this.HomeTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.HomeTitle.Location = new System.Drawing.Point(0, 0);
+            this.HomeTitle.Margin = new System.Windows.Forms.Padding(0, 0, 0, 100);
             this.HomeTitle.Name = "HomeTitle";
-            this.HomeTitle.Size = new System.Drawing.Size(228, 55);
+            this.HomeTitle.Size = new System.Drawing.Size(1048, 225);
             this.HomeTitle.TabIndex = 0;
             this.HomeTitle.Text = "War.NET";
+            this.HomeTitle.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // framePageNewGame
             // 
@@ -143,14 +158,17 @@
             // 
             // NewGameFrame
             // 
-            this.NewGameFrame.Controls.Add(this.NewGameButtonCancel);
-            this.NewGameFrame.Controls.Add(this.NewGameBoxCut);
+            this.NewGameFrame.Controls.Add(this.NewGameTitle);
+            this.NewGameFrame.Controls.Add(this.gbWarBet);
             this.NewGameFrame.Controls.Add(this.NewGameBoxShuffle);
-            this.NewGameFrame.Controls.Add(this.NewGameLabelOpponent);
-            this.NewGameFrame.Controls.Add(this.NewGameButtonStart);
-            this.NewGameFrame.Controls.Add(this.NewGameLabelName);
-            this.NewGameFrame.Controls.Add(this.NewGameTextName);
+            this.NewGameFrame.Controls.Add(this.NewGameBoxMaxRounds);
             this.NewGameFrame.Controls.Add(this.NewGameTextOpponent);
+            this.NewGameFrame.Controls.Add(this.NewGameTextName);
+            this.NewGameFrame.Controls.Add(this.NewGameBoxCut);
+            this.NewGameFrame.Controls.Add(this.NewGameButtonCancel);
+            this.NewGameFrame.Controls.Add(this.NewGameLabelName);
+            this.NewGameFrame.Controls.Add(this.NewGameButtonStart);
+            this.NewGameFrame.Controls.Add(this.NewGameLabelOpponent);
             this.NewGameFrame.Dock = System.Windows.Forms.DockStyle.Fill;
             this.NewGameFrame.Location = new System.Drawing.Point(0, 0);
             this.NewGameFrame.Name = "NewGameFrame";
@@ -159,7 +177,7 @@
             // 
             // NewGameButtonCancel
             // 
-            this.NewGameButtonCancel.Location = new System.Drawing.Point(518, 422);
+            this.NewGameButtonCancel.Location = new System.Drawing.Point(539, 510);
             this.NewGameButtonCancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.NewGameButtonCancel.Name = "NewGameButtonCancel";
             this.NewGameButtonCancel.Size = new System.Drawing.Size(162, 49);
@@ -170,9 +188,9 @@
             // NewGameBoxCut
             // 
             this.NewGameBoxCut.Controls.Add(this.NewGameDeckCutSlider);
-            this.NewGameBoxCut.Location = new System.Drawing.Point(262, 315);
+            this.NewGameBoxCut.Location = new System.Drawing.Point(29, 398);
             this.NewGameBoxCut.Name = "NewGameBoxCut";
-            this.NewGameBoxCut.Size = new System.Drawing.Size(504, 66);
+            this.NewGameBoxCut.Size = new System.Drawing.Size(484, 66);
             this.NewGameBoxCut.TabIndex = 11;
             this.NewGameBoxCut.TabStop = false;
             this.NewGameBoxCut.Text = "Cut Deck At: 0";
@@ -183,16 +201,16 @@
             this.NewGameDeckCutSlider.Dock = System.Windows.Forms.DockStyle.Fill;
             this.NewGameDeckCutSlider.Location = new System.Drawing.Point(3, 22);
             this.NewGameDeckCutSlider.Name = "NewGameDeckCutSlider";
-            this.NewGameDeckCutSlider.Size = new System.Drawing.Size(498, 41);
+            this.NewGameDeckCutSlider.Size = new System.Drawing.Size(478, 41);
             this.NewGameDeckCutSlider.TabIndex = 3;
             this.NewGameDeckCutSlider.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
             // NewGameBoxShuffle
             // 
             this.NewGameBoxShuffle.Controls.Add(this.NewGameDeckShuffleSlider);
-            this.NewGameBoxShuffle.Location = new System.Drawing.Point(262, 211);
+            this.NewGameBoxShuffle.Location = new System.Drawing.Point(29, 298);
             this.NewGameBoxShuffle.Name = "NewGameBoxShuffle";
-            this.NewGameBoxShuffle.Size = new System.Drawing.Size(504, 66);
+            this.NewGameBoxShuffle.Size = new System.Drawing.Size(484, 66);
             this.NewGameBoxShuffle.TabIndex = 10;
             this.NewGameBoxShuffle.TabStop = false;
             this.NewGameBoxShuffle.Text = "Shuffle Count: 0";
@@ -203,14 +221,14 @@
             this.NewGameDeckShuffleSlider.Dock = System.Windows.Forms.DockStyle.Fill;
             this.NewGameDeckShuffleSlider.Location = new System.Drawing.Point(3, 22);
             this.NewGameDeckShuffleSlider.Name = "NewGameDeckShuffleSlider";
-            this.NewGameDeckShuffleSlider.Size = new System.Drawing.Size(498, 41);
+            this.NewGameDeckShuffleSlider.Size = new System.Drawing.Size(478, 41);
             this.NewGameDeckShuffleSlider.TabIndex = 2;
             this.NewGameDeckShuffleSlider.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
             // NewGameLabelOpponent
             // 
             this.NewGameLabelOpponent.AutoSize = true;
-            this.NewGameLabelOpponent.Location = new System.Drawing.Point(258, 158);
+            this.NewGameLabelOpponent.Location = new System.Drawing.Point(274, 234);
             this.NewGameLabelOpponent.Name = "NewGameLabelOpponent";
             this.NewGameLabelOpponent.Size = new System.Drawing.Size(84, 20);
             this.NewGameLabelOpponent.TabIndex = 9;
@@ -218,7 +236,7 @@
             // 
             // NewGameButtonStart
             // 
-            this.NewGameButtonStart.Location = new System.Drawing.Point(348, 422);
+            this.NewGameButtonStart.Location = new System.Drawing.Point(351, 510);
             this.NewGameButtonStart.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.NewGameButtonStart.Name = "NewGameButtonStart";
             this.NewGameButtonStart.Size = new System.Drawing.Size(162, 49);
@@ -229,7 +247,7 @@
             // NewGameLabelName
             // 
             this.NewGameLabelName.AutoSize = true;
-            this.NewGameLabelName.Location = new System.Drawing.Point(286, 106);
+            this.NewGameLabelName.Location = new System.Drawing.Point(303, 179);
             this.NewGameLabelName.Name = "NewGameLabelName";
             this.NewGameLabelName.Size = new System.Drawing.Size(55, 20);
             this.NewGameLabelName.TabIndex = 7;
@@ -238,18 +256,18 @@
             // NewGameTextName
             // 
             this.NewGameTextName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::WarNET.Properties.Settings.Default, "GamePlayerName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.NewGameTextName.Location = new System.Drawing.Point(348, 103);
+            this.NewGameTextName.Location = new System.Drawing.Point(365, 176);
             this.NewGameTextName.Name = "NewGameTextName";
-            this.NewGameTextName.Size = new System.Drawing.Size(418, 26);
+            this.NewGameTextName.Size = new System.Drawing.Size(336, 26);
             this.NewGameTextName.TabIndex = 5;
             this.NewGameTextName.Text = global::WarNET.Properties.Settings.Default.GamePlayerName;
             // 
             // NewGameTextOpponent
             // 
             this.NewGameTextOpponent.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::WarNET.Properties.Settings.Default, "GameOpponentName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.NewGameTextOpponent.Location = new System.Drawing.Point(348, 155);
+            this.NewGameTextOpponent.Location = new System.Drawing.Point(364, 231);
             this.NewGameTextOpponent.Name = "NewGameTextOpponent";
-            this.NewGameTextOpponent.Size = new System.Drawing.Size(418, 26);
+            this.NewGameTextOpponent.Size = new System.Drawing.Size(337, 26);
             this.NewGameTextOpponent.TabIndex = 6;
             this.NewGameTextOpponent.Text = global::WarNET.Properties.Settings.Default.GameOpponentName;
             // 
@@ -265,6 +283,7 @@
             // 
             // PlayFrame
             // 
+            this.PlayFrame.Controls.Add(this.PlayFrameStatus);
             this.PlayFrame.Controls.Add(this.PlayFrameButtonRestart);
             this.PlayFrame.Controls.Add(this.PlayFrameLabelRoundCount);
             this.PlayFrame.Controls.Add(this.PlayFrameLabelRound);
@@ -334,7 +353,7 @@
             // PlayFrameLabelOpponentHandSize
             // 
             this.PlayFrameLabelOpponentHandSize.AutoSize = true;
-            this.PlayFrameLabelOpponentHandSize.Location = new System.Drawing.Point(977, 261);
+            this.PlayFrameLabelOpponentHandSize.Location = new System.Drawing.Point(977, 296);
             this.PlayFrameLabelOpponentHandSize.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.PlayFrameLabelOpponentHandSize.Name = "PlayFrameLabelOpponentHandSize";
             this.PlayFrameLabelOpponentHandSize.Size = new System.Drawing.Size(18, 20);
@@ -354,7 +373,7 @@
             // PlayFrameLabelOpponentCards
             // 
             this.PlayFrameLabelOpponentCards.AutoSize = true;
-            this.PlayFrameLabelOpponentCards.Location = new System.Drawing.Point(926, 261);
+            this.PlayFrameLabelOpponentCards.Location = new System.Drawing.Point(926, 296);
             this.PlayFrameLabelOpponentCards.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.PlayFrameLabelOpponentCards.Name = "PlayFrameLabelOpponentCards";
             this.PlayFrameLabelOpponentCards.Size = new System.Drawing.Size(55, 20);
@@ -374,7 +393,7 @@
             // PlayFrameOpponentDeck
             // 
             this.PlayFrameOpponentDeck.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PlayFrameOpponentDeck.Location = new System.Drawing.Point(896, 59);
+            this.PlayFrameOpponentDeck.Location = new System.Drawing.Point(896, 94);
             this.PlayFrameOpponentDeck.Name = "PlayFrameOpponentDeck";
             this.PlayFrameOpponentDeck.Size = new System.Drawing.Size(135, 188);
             this.PlayFrameOpponentDeck.TabIndex = 3;
@@ -391,7 +410,7 @@
             // 
             this.PlayFrameLabelPlayer.AutoEllipsis = true;
             this.PlayFrameLabelPlayer.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::WarNET.Properties.Settings.Default, "GamePlayerName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.PlayFrameLabelPlayer.Location = new System.Drawing.Point(12, 319);
+            this.PlayFrameLabelPlayer.Location = new System.Drawing.Point(12, 292);
             this.PlayFrameLabelPlayer.Name = "PlayFrameLabelPlayer";
             this.PlayFrameLabelPlayer.Size = new System.Drawing.Size(181, 28);
             this.PlayFrameLabelPlayer.TabIndex = 1;
@@ -421,6 +440,87 @@
             this.PlayFrameButtonRestart.UseVisualStyleBackColor = true;
             this.PlayFrameButtonRestart.Visible = false;
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 162F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.HomeTitle, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.HomeButtonNewGame, 1, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1048, 592);
+            this.tableLayoutPanel1.TabIndex = 3;
+            // 
+            // NewGameBoxMaxRounds
+            // 
+            this.NewGameBoxMaxRounds.Controls.Add(this.NewGameMaxRoundsSlider);
+            this.NewGameBoxMaxRounds.Location = new System.Drawing.Point(539, 298);
+            this.NewGameBoxMaxRounds.Name = "NewGameBoxMaxRounds";
+            this.NewGameBoxMaxRounds.Size = new System.Drawing.Size(484, 66);
+            this.NewGameBoxMaxRounds.TabIndex = 12;
+            this.NewGameBoxMaxRounds.TabStop = false;
+            this.NewGameBoxMaxRounds.Text = "Max Rounds: 0";
+            // 
+            // NewGameMaxRoundsSlider
+            // 
+            this.NewGameMaxRoundsSlider.AutoSize = false;
+            this.NewGameMaxRoundsSlider.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.NewGameMaxRoundsSlider.LargeChange = 100;
+            this.NewGameMaxRoundsSlider.Location = new System.Drawing.Point(3, 22);
+            this.NewGameMaxRoundsSlider.Name = "NewGameMaxRoundsSlider";
+            this.NewGameMaxRoundsSlider.Size = new System.Drawing.Size(478, 41);
+            this.NewGameMaxRoundsSlider.SmallChange = 10;
+            this.NewGameMaxRoundsSlider.TabIndex = 3;
+            this.NewGameMaxRoundsSlider.TickStyle = System.Windows.Forms.TickStyle.None;
+            // 
+            // gbWarBet
+            // 
+            this.gbWarBet.Controls.Add(this.NewGameWarBetSlider);
+            this.gbWarBet.Location = new System.Drawing.Point(539, 398);
+            this.gbWarBet.Name = "gbWarBet";
+            this.gbWarBet.Size = new System.Drawing.Size(484, 66);
+            this.gbWarBet.TabIndex = 13;
+            this.gbWarBet.TabStop = false;
+            this.gbWarBet.Text = "# Cards Bet for War: 0";
+            // 
+            // NewGameWarBetSlider
+            // 
+            this.NewGameWarBetSlider.AutoSize = false;
+            this.NewGameWarBetSlider.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.NewGameWarBetSlider.Location = new System.Drawing.Point(3, 22);
+            this.NewGameWarBetSlider.Name = "NewGameWarBetSlider";
+            this.NewGameWarBetSlider.Size = new System.Drawing.Size(478, 41);
+            this.NewGameWarBetSlider.TabIndex = 3;
+            this.NewGameWarBetSlider.TickStyle = System.Windows.Forms.TickStyle.None;
+            // 
+            // NewGameTitle
+            // 
+            this.NewGameTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NewGameTitle.Location = new System.Drawing.Point(19, 27);
+            this.NewGameTitle.Margin = new System.Windows.Forms.Padding(0, 0, 0, 100);
+            this.NewGameTitle.Name = "NewGameTitle";
+            this.NewGameTitle.Size = new System.Drawing.Size(1016, 124);
+            this.NewGameTitle.TabIndex = 14;
+            this.NewGameTitle.Text = "Game Settings";
+            this.NewGameTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // PlayFrameStatus
+            // 
+            this.PlayFrameStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PlayFrameStatus.Location = new System.Drawing.Point(150, 12);
+            this.PlayFrameStatus.Name = "PlayFrameStatus";
+            this.PlayFrameStatus.Size = new System.Drawing.Size(740, 63);
+            this.PlayFrameStatus.TabIndex = 13;
+            this.PlayFrameStatus.Text = "Player wins round!";
+            this.PlayFrameStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // GameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -438,7 +538,6 @@
             this.frameCollection.ResumeLayout(false);
             this.framePageHome.ResumeLayout(false);
             this.HomeFrame.ResumeLayout(false);
-            this.HomeFrame.PerformLayout();
             this.framePageNewGame.ResumeLayout(false);
             this.NewGameFrame.ResumeLayout(false);
             this.NewGameFrame.PerformLayout();
@@ -449,6 +548,12 @@
             this.framePagePlay.ResumeLayout(false);
             this.PlayFrame.ResumeLayout(false);
             this.PlayFrame.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
+            this.NewGameBoxMaxRounds.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.NewGameMaxRoundsSlider)).EndInit();
+            this.gbWarBet.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.NewGameWarBetSlider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -488,6 +593,13 @@
         private System.Windows.Forms.Button PlayFrameButtonPlay;
         private System.Windows.Forms.Label PlayFrameLabelRoundCount;
         private System.Windows.Forms.Button PlayFrameButtonRestart;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.GroupBox NewGameBoxMaxRounds;
+        private System.Windows.Forms.TrackBar NewGameMaxRoundsSlider;
+        private System.Windows.Forms.GroupBox gbWarBet;
+        private System.Windows.Forms.TrackBar NewGameWarBetSlider;
+        private System.Windows.Forms.Label NewGameTitle;
+        private System.Windows.Forms.Label PlayFrameStatus;
     }
 }
 
