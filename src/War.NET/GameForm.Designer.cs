@@ -31,16 +31,8 @@
             this.frameCollection = new System.Windows.Forms.TabControl();
             this.framePageHome = new System.Windows.Forms.TabPage();
             this.HomeFrame = new System.Windows.Forms.Panel();
-            this.HomeButtonContinue = new System.Windows.Forms.Button();
             this.HomeButtonNewGame = new System.Windows.Forms.Button();
-            this.HomeButtonSettings = new System.Windows.Forms.Button();
             this.HomeTitle = new System.Windows.Forms.Label();
-            this.framePageRules = new System.Windows.Forms.TabPage();
-            this.RulesFrame = new System.Windows.Forms.Panel();
-            this.RulesButtonSave = new System.Windows.Forms.Button();
-            this.RulesTextDescription = new System.Windows.Forms.RichTextBox();
-            this.RulesList = new System.Windows.Forms.ComboBox();
-            this.RulesListLabel = new System.Windows.Forms.Label();
             this.framePageNewGame = new System.Windows.Forms.TabPage();
             this.NewGameFrame = new System.Windows.Forms.Panel();
             this.NewGameButtonCancel = new System.Windows.Forms.Button();
@@ -72,8 +64,6 @@
             this.frameCollection.SuspendLayout();
             this.framePageHome.SuspendLayout();
             this.HomeFrame.SuspendLayout();
-            this.framePageRules.SuspendLayout();
-            this.RulesFrame.SuspendLayout();
             this.framePageNewGame.SuspendLayout();
             this.NewGameFrame.SuspendLayout();
             this.NewGameBoxCut.SuspendLayout();
@@ -87,7 +77,6 @@
             // frameCollection
             // 
             this.frameCollection.Controls.Add(this.framePageHome);
-            this.frameCollection.Controls.Add(this.framePageRules);
             this.frameCollection.Controls.Add(this.framePageNewGame);
             this.frameCollection.Controls.Add(this.framePagePlay);
             this.frameCollection.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -112,9 +101,7 @@
             // 
             // HomeFrame
             // 
-            this.HomeFrame.Controls.Add(this.HomeButtonContinue);
             this.HomeFrame.Controls.Add(this.HomeButtonNewGame);
-            this.HomeFrame.Controls.Add(this.HomeButtonSettings);
             this.HomeFrame.Controls.Add(this.HomeTitle);
             this.HomeFrame.Dock = System.Windows.Forms.DockStyle.Fill;
             this.HomeFrame.Location = new System.Drawing.Point(4, 5);
@@ -123,111 +110,26 @@
             this.HomeFrame.Size = new System.Drawing.Size(1048, 592);
             this.HomeFrame.TabIndex = 0;
             // 
-            // HomeButtonContinue
-            // 
-            this.HomeButtonContinue.Enabled = false;
-            this.HomeButtonContinue.Location = new System.Drawing.Point(428, 351);
-            this.HomeButtonContinue.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.HomeButtonContinue.Name = "HomeButtonContinue";
-            this.HomeButtonContinue.Size = new System.Drawing.Size(162, 49);
-            this.HomeButtonContinue.TabIndex = 3;
-            this.HomeButtonContinue.Text = "Continue";
-            this.HomeButtonContinue.UseVisualStyleBackColor = true;
-            // 
             // HomeButtonNewGame
             // 
-            this.HomeButtonNewGame.Location = new System.Drawing.Point(256, 351);
+            this.HomeButtonNewGame.Location = new System.Drawing.Point(417, 334);
             this.HomeButtonNewGame.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.HomeButtonNewGame.Name = "HomeButtonNewGame";
             this.HomeButtonNewGame.Size = new System.Drawing.Size(162, 49);
             this.HomeButtonNewGame.TabIndex = 2;
-            this.HomeButtonNewGame.Text = "New Game";
+            this.HomeButtonNewGame.Text = "Play";
             this.HomeButtonNewGame.UseVisualStyleBackColor = true;
-            // 
-            // HomeButtonSettings
-            // 
-            this.HomeButtonSettings.Location = new System.Drawing.Point(598, 351);
-            this.HomeButtonSettings.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.HomeButtonSettings.Name = "HomeButtonSettings";
-            this.HomeButtonSettings.Size = new System.Drawing.Size(162, 49);
-            this.HomeButtonSettings.TabIndex = 1;
-            this.HomeButtonSettings.Text = "Settings";
-            this.HomeButtonSettings.UseVisualStyleBackColor = true;
             // 
             // HomeTitle
             // 
             this.HomeTitle.AutoSize = true;
             this.HomeTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HomeTitle.Location = new System.Drawing.Point(394, 182);
+            this.HomeTitle.Location = new System.Drawing.Point(388, 188);
             this.HomeTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.HomeTitle.Name = "HomeTitle";
             this.HomeTitle.Size = new System.Drawing.Size(228, 55);
             this.HomeTitle.TabIndex = 0;
             this.HomeTitle.Text = "War.NET";
-            // 
-            // framePageRules
-            // 
-            this.framePageRules.Controls.Add(this.RulesFrame);
-            this.framePageRules.Location = new System.Drawing.Point(4, 29);
-            this.framePageRules.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.framePageRules.Name = "framePageRules";
-            this.framePageRules.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.framePageRules.Size = new System.Drawing.Size(1056, 602);
-            this.framePageRules.TabIndex = 1;
-            this.framePageRules.Text = "Rules Frame";
-            this.framePageRules.UseVisualStyleBackColor = true;
-            // 
-            // RulesFrame
-            // 
-            this.RulesFrame.Controls.Add(this.RulesButtonSave);
-            this.RulesFrame.Controls.Add(this.RulesTextDescription);
-            this.RulesFrame.Controls.Add(this.RulesList);
-            this.RulesFrame.Controls.Add(this.RulesListLabel);
-            this.RulesFrame.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RulesFrame.Location = new System.Drawing.Point(4, 5);
-            this.RulesFrame.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.RulesFrame.Name = "RulesFrame";
-            this.RulesFrame.Size = new System.Drawing.Size(1048, 592);
-            this.RulesFrame.TabIndex = 2;
-            // 
-            // RulesButtonSave
-            // 
-            this.RulesButtonSave.Location = new System.Drawing.Point(453, 546);
-            this.RulesButtonSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.RulesButtonSave.Name = "RulesButtonSave";
-            this.RulesButtonSave.Size = new System.Drawing.Size(146, 49);
-            this.RulesButtonSave.TabIndex = 3;
-            this.RulesButtonSave.Text = "Save Settings";
-            this.RulesButtonSave.UseVisualStyleBackColor = true;
-            // 
-            // RulesTextDescription
-            // 
-            this.RulesTextDescription.Location = new System.Drawing.Point(12, 60);
-            this.RulesTextDescription.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.RulesTextDescription.Name = "RulesTextDescription";
-            this.RulesTextDescription.Size = new System.Drawing.Size(1021, 479);
-            this.RulesTextDescription.TabIndex = 2;
-            this.RulesTextDescription.Text = "Standard Rules";
-            // 
-            // RulesList
-            // 
-            this.RulesList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.RulesList.FormattingEnabled = true;
-            this.RulesList.Location = new System.Drawing.Point(122, 18);
-            this.RulesList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.RulesList.Name = "RulesList";
-            this.RulesList.Size = new System.Drawing.Size(180, 28);
-            this.RulesList.TabIndex = 0;
-            // 
-            // RulesListLabel
-            // 
-            this.RulesListLabel.AutoSize = true;
-            this.RulesListLabel.Location = new System.Drawing.Point(8, 23);
-            this.RulesListLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.RulesListLabel.Name = "RulesListLabel";
-            this.RulesListLabel.Size = new System.Drawing.Size(103, 20);
-            this.RulesListLabel.TabIndex = 1;
-            this.RulesListLabel.Text = "Select Rules:";
             // 
             // framePageNewGame
             // 
@@ -537,9 +439,6 @@
             this.framePageHome.ResumeLayout(false);
             this.HomeFrame.ResumeLayout(false);
             this.HomeFrame.PerformLayout();
-            this.framePageRules.ResumeLayout(false);
-            this.RulesFrame.ResumeLayout(false);
-            this.RulesFrame.PerformLayout();
             this.framePageNewGame.ResumeLayout(false);
             this.NewGameFrame.ResumeLayout(false);
             this.NewGameFrame.PerformLayout();
@@ -560,15 +459,7 @@
         private System.Windows.Forms.TabPage framePageHome;
         private System.Windows.Forms.Panel HomeFrame;
         private System.Windows.Forms.Label HomeTitle;
-        private System.Windows.Forms.TabPage framePageRules;
-        private System.Windows.Forms.Label RulesListLabel;
-        private System.Windows.Forms.ComboBox RulesList;
-        private System.Windows.Forms.Panel RulesFrame;
-        private System.Windows.Forms.RichTextBox RulesTextDescription;
-        private System.Windows.Forms.Button RulesButtonSave;
-        private System.Windows.Forms.Button HomeButtonContinue;
         private System.Windows.Forms.Button HomeButtonNewGame;
-        private System.Windows.Forms.Button HomeButtonSettings;
         private System.Windows.Forms.TabPage framePageNewGame;
         private System.Windows.Forms.Panel NewGameFrame;
         private System.Windows.Forms.TextBox NewGameTextName;

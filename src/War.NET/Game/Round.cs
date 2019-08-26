@@ -66,33 +66,29 @@ namespace WarNET.Game
         /// <returns>The result of the round.</returns>
         public Result Next()
         {
-            LastResult = Result.NOT_PLAYED;
-
             var playerCard = Game.Player.PlayNext();
             var opponentCard = Game.Opponent.PlayNext();
+            PlayerCards.Add(playerCard);
+            OpponentCards.Add(opponentCard);
 
-            if (playerCard == null && opponentCard == null)
+            if (Game.Player.CardsLeft == 0 && Game.Opponent.CardsLeft == 0)
             {
                 LastResult = Result.GAMEOVER_TIE;
             }
-            else if(playerCard == null)
+            else if(Game.Player.CardsLeft == 0)
             {
                 LastResult = Result.GAMEOVER_OPPONENT_WIN;
             }
-            else if(opponentCard == null)
+            else if(Game.Opponent.CardsLeft == 0)
             {
                 LastResult = Result.GAMEOVER_PLAYER_WIN;
             }
             else if(LastResult == Result.WAR)
             {
-                PlayerCards.Add(playerCard);
-                OpponentCards.Add(opponentCard);
                 LastResult = Result.NOT_PLAYED;
             }
             else
             {
-                PlayerCards.Add(playerCard);
-                OpponentCards.Add(opponentCard);
                 LastResult = playerCard.Rank == opponentCard.Rank ? Result.WAR : (playerCard.Rank > opponentCard.Rank ? Result.PLAYER_WIN : Result.OPPONENT_WIN);
             }
             return LastResult;
@@ -103,26 +99,30 @@ namespace WarNET.Game
         /// </summary>
         public void Finish()
         {
-            if (LastResult == Result.PLAYER_WIN || LastResult == Result.OPPONENT_WIN)
+            switch(LastResult)
             {
-                var roundDeck = new Deck(PlayerCards.Concat(OpponentCards).ToList());
-                roundDeck.Shuffle();
-                (LastResult == Result.PLAYER_WIN ? Game.Player : Game.Opponent).GiveCardsAtEnd(roundDeck.Cards.ToArray());
-                PlayerCards = new List<Card>();
-                OpponentCards = new List<Card>();
-                Count++;
-            }
+                case Result.OPPONENT_WIN:
+                case Result.PLAYER_WIN:
+                    var roundDeck = new Deck(PlayerCards.Concat(OpponentCards).ToList());
+                    roundDeck.Shuffle();
+                    (LastResult == Result.PLAYER_WIN ? Game.Player : Game.Opponent).GiveCardsAtEnd(roundDeck.Cards.ToArray());
+                    PlayerCards = new List<Card>();
+                    OpponentCards = new List<Card>();
+                    Count++;
+                    break;
 
-            if(LastResult == Result.GAMEOVER_PLAYER_WIN || LastResult == Result.GAMEOVER_OPPONENT_WIN)
-            {
-                var cards = Game.Player.Hand.Concat(Game.Opponent.Hand).Concat(PlayerCards).Concat(OpponentCards).ToList();
-                Game.Deck.Cards = cards;
-                Game.Deck.Shuffle(1);
+                case Result.GAMEOVER_OPPONENT_WIN:
+                case Result.GAMEOVER_PLAYER_WIN:
+                case Result.GAMEOVER_TIE:
+                    var cards = Game.Player.Hand.Concat(Game.Opponent.Hand).Concat(PlayerCards).Concat(OpponentCards);
+                    Game.Deck.Cards.AddRange(cards);
+                    Game.Deck.Shuffle(1);
 
-                Game.Player.Hand = new List<Card>();
-                Game.Opponent.Hand = new List<Card>();
-                PlayerCards = new List<Card>();
-                OpponentCards = new List<Card>();
+                    Game.Player.Hand.Clear();
+                    Game.Opponent.Hand.Clear();
+                    PlayerCards.Clear();
+                    OpponentCards.Clear();
+                    break;
             }
         }
     }

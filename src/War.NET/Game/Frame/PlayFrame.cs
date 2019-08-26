@@ -156,6 +156,7 @@ namespace WarNET.Game.Frame
                                 ButtonRestart.Visible = true;
                                 ButtonPlay.Text = "End Game";
                                 gameover = true;
+                                Game.Round.Finish();
                                 break;
 
                             // WAR
